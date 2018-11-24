@@ -15,7 +15,7 @@ function getConnect() {
 function getConnect() {
     // Conectando, seleccionando la base de datos
     // tupeluqu_web
-    $link = mysqli_connect("127.0.0.1", "tupeluqu_web", "vergara16", "estado_obras");
+    $link = mysqli_connect("127.0.0.1", "_web", "estado_obras123", "estado_obras");
     $link->set_charset('utf8');
     return $link;
 }*/
