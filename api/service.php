@@ -506,4 +506,111 @@ $app->delete('/estados/delete/{id}',
 });
 
 
+
+/**
+ * 
+ * 
+ * Archivos WS
+ * 
+ * 
+ */
+$app->get('/archivo', function (Request $request, Response $response, array $args) {
+
+    $token_header = $request->getHeaderLine('authorization-x');
+    if (UserController::validateToken($token_header)) {
+
+        $response = $response->withJson(ArchivoController::getAll());
+        return $response;
+    } else {
+
+        return $response->withStatus(203)
+                        ->withHeader('Content-Type', 'text/html')
+                        ->write('203 Non-Authoritative Information. (authorization-x)');
+    }
+});
+
+$app->get('/archivo/imagen/{id}', function (Request $request, Response $response, array $args) {
+    $id = $args['id'];
+    $response = $response->withJson(ArchivoController::getImagenById($id));
+    return $response;
+});
+
+$app->get('/archivo/id/{id}', function (Request $request, Response $response, array $args) {
+
+    $token_header = $request->getHeaderLine('authorization-x');
+    if (UserController::validateToken($token_header)) {
+
+        $id = $args['id'];
+        $response = $response->withJson(ArchivoController::getById($id));
+        return $response;
+    } else {
+
+        return $response->withStatus(203)
+                        ->withHeader('Content-Type', 'text/html')
+                        ->write('203 Non-Authoritative Information. (authorization-x)');
+    }
+});
+
+$app->get('/archivo/estado/{id}', function (Request $request, Response $response, array $args) {
+
+    $token_header = $request->getHeaderLine('authorization-x');
+    if (UserController::validateToken($token_header)) {
+
+        $id = $args['id'];
+        $response = $response->withJson(ArchivoController::getAllByEstadoId($id));
+        return $response;
+    } else {
+
+        return $response->withStatus(203)
+                        ->withHeader('Content-Type', 'text/html')
+                        ->write('203 Non-Authoritative Information. (authorization-x)');
+    }
+});
+
+$app->post('/archivo/create', 
+function (Request $request, Response $response) {
+
+    $token_header = $request->getHeaderLine('authorization-x');
+    if (UserController::validateToken($token_header)) {
+        $data = $request->getParsedBody();
+        $response = $response->withJson(ArchivoController::create($data));
+        return $response;
+    } else {
+        return $response->withStatus(203)
+                        ->withHeader('Content-Type', 'text/html')
+                        ->write('203 Non-Authoritative Information. (authorization-x)');
+    }
+});
+
+$app->put('/archivo/update', 
+function (Request $request, Response $response) {
+
+    $token_header = $request->getHeaderLine('authorization-x');
+    if (UserController::validateToken($token_header)) {
+        $data = $request->getParsedBody();
+        $response = $response->withJson(ArchivoController::update($data));
+        return $response;
+    } else {
+        return $response->withStatus(203)
+                        ->withHeader('Content-Type', 'text/html')
+                        ->write('203 Non-Authoritative Information. (authorization-x)');
+    }
+});
+
+$app->delete('/archivo/delete/{id}', 
+    function (Request $request, Response $response, array $args) {
+        $token_header = $request->getHeaderLine('authorization-x');
+        if (UserController::validateToken($token_header)) {
+
+            $id = $args['id'];
+            $response = $response->withJson(ArchivoController::delete($id));
+            return $response;
+        } else {
+            return $response->withStatus(203)
+                            ->withHeader('Content-Type', 'text/html')
+                            ->write('203 Non-Authoritative Information. (authorization-x)');
+        }
+});
+
+
 $app->run();
