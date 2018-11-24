@@ -31,7 +31,7 @@ CREATE TABLE `archivos` (
   PRIMARY KEY (`fotoid`,`estadosObrasId`),
   KEY `fk_archivos_estadosObras1_idx` (`estadosObrasId`),
   CONSTRAINT `fk_archivos_estadosObras1` FOREIGN KEY (`estadosObrasId`) REFERENCES `estadosObras` (`estadosObrasId`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,6 +40,7 @@ CREATE TABLE `archivos` (
 
 LOCK TABLES `archivos` WRITE;
 /*!40000 ALTER TABLE `archivos` DISABLE KEYS */;
+INSERT INTO `archivos` VALUES (1,_binary 'data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7','es una prueba','png',1),(2,_binary 'data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7','es una prueba 2 -','png',1);
 /*!40000 ALTER TABLE `archivos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -52,12 +53,12 @@ DROP TABLE IF EXISTS `empresas`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `empresas` (
   `empresaId` int(11) NOT NULL AUTO_INCREMENT,
-  `Nombre empresa` varchar(145) DEFAULT NULL,
+  `nombreEmpresa` varchar(145) DEFAULT NULL,
   `logo` varchar(145) DEFAULT NULL,
-  `rut` varchar(17) DEFAULT NULL,
+  `rutEmpresa` varchar(17) DEFAULT NULL,
   `direccion` varchar(256) DEFAULT NULL,
   PRIMARY KEY (`empresaId`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -86,7 +87,7 @@ CREATE TABLE `estadosObras` (
   PRIMARY KEY (`estadosObrasId`),
   KEY `fk_estadosObras_obras1_idx` (`obraId`),
   CONSTRAINT `fk_estadosObras_obras1` FOREIGN KEY (`obraId`) REFERENCES `obras` (`obraId`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,6 +96,7 @@ CREATE TABLE `estadosObras` (
 
 LOCK TABLES `estadosObras` WRITE;
 /*!40000 ALTER TABLE `estadosObras` DISABLE KEYS */;
+INSERT INTO `estadosObras` VALUES (1,'Primera toma','2018-09-01 00:00:00','Esta fue una prueba',1),(2,'Primera semana','2018-01-01 00:00:00','Ejemplo de estado',1);
 /*!40000 ALTER TABLE `estadosObras` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -108,14 +110,14 @@ DROP TABLE IF EXISTS `obras`;
 CREATE TABLE `obras` (
   `obraId` int(11) NOT NULL AUTO_INCREMENT,
   `nombreObra` varchar(145) NOT NULL,
-  `codObra` varchar(45) NOT NULL,
-  `direccion` varchar(45) DEFAULT NULL,
+  `codObra` varchar(45) DEFAULT NULL,
+  `direccion` varchar(200) DEFAULT NULL,
   `fechaInicio` datetime DEFAULT NULL,
   `proyectosId` int(11) NOT NULL,
   PRIMARY KEY (`obraId`,`proyectosId`),
   KEY `fk_obras_proyectos1_idx` (`proyectosId`),
   CONSTRAINT `fk_obras_proyectos1` FOREIGN KEY (`proyectosId`) REFERENCES `proyectos` (`proyectosId`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -124,6 +126,7 @@ CREATE TABLE `obras` (
 
 LOCK TABLES `obras` WRITE;
 /*!40000 ALTER TABLE `obras` DISABLE KEYS */;
+INSERT INTO `obras` VALUES (1,'Pandaderia A','PADA','Las palmas 1232','2018-03-01 00:00:00',1),(2,'Obra A Nueva 2 -1',NULL,'Canto 123, La cisterna','2018-01-01 00:00:00',1);
 /*!40000 ALTER TABLE `obras` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -142,7 +145,7 @@ CREATE TABLE `proyectos` (
   PRIMARY KEY (`proyectosId`,`empresaId`),
   KEY `fk_proyectos_empresas1_idx` (`empresaId`),
   CONSTRAINT `fk_proyectos_empresas1` FOREIGN KEY (`empresaId`) REFERENCES `empresas` (`empresaId`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151,6 +154,7 @@ CREATE TABLE `proyectos` (
 
 LOCK TABLES `proyectos` WRITE;
 /*!40000 ALTER TABLE `proyectos` DISABLE KEYS */;
+INSERT INTO `proyectos` VALUES (1,'Tesla','Proyecto de prueba...',1),(2,'Nueva Real 2s','Proyecto de prueba 2...',1);
 /*!40000 ALTER TABLE `proyectos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -184,7 +188,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('1-9','PVERGARA@MAIL.COM','12345','2018-11-24 15:03:03','ADMINISTRADOR','ENAVIA','ADMIN',1,NULL,1);
+INSERT INTO `user` VALUES ('1-2','PVERGARA@MAIL.COM','12345','2018-11-24 15:33:58','ADMINISTRADOR','ENAVIA','ADMIN',1,NULL,1),('1-3','PVERGARA@MAIL.COM','12345','2018-11-24 16:57:56','ADMINISTRADOR','ENAVIA','ADMIN',1,NULL,1),('1-9','PVERGARA@MAIL.COM','12345','2018-11-24 15:03:03','ADMINISTRADOR','ENAVIA','ADMIN',1,'MC4wMDg2ODcwMCAxNTQzMDc3OTA0',1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -197,4 +201,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-24 12:04:47
+-- Dump completed on 2018-11-24 18:49:16
