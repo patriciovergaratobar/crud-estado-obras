@@ -407,4 +407,103 @@ $app->delete('/obra/delete/{id}',
 });
 
 
+/**
+ * 
+ * 
+ * Estados Obras WS
+ * 
+ */
+$app->get('/estados', function (Request $request, Response $response, array $args) {
+
+    $token_header = $request->getHeaderLine('authorization-x');
+    if (UserController::validateToken($token_header)) {
+
+        $response = $response->withJson(EstadosObraController::getAll());
+        return $response;
+    } else {
+
+        return $response->withStatus(203)
+                        ->withHeader('Content-Type', 'text/html')
+                        ->write('203 Non-Authoritative Information. (authorization-x)');
+    }
+});
+
+$app->get('/estados/id/{id}', function (Request $request, Response $response, array $args) {
+
+    $token_header = $request->getHeaderLine('authorization-x');
+    if (UserController::validateToken($token_header)) {
+
+        $id = $args['id'];
+        $response = $response->withJson(EstadosObraController::getById($id));
+        return $response;
+    } else {
+
+        return $response->withStatus(203)
+                        ->withHeader('Content-Type', 'text/html')
+                        ->write('203 Non-Authoritative Information. (authorization-x)');
+    }
+});
+
+$app->get('/estados/obra/{id}', function (Request $request, Response $response, array $args) {
+
+    $token_header = $request->getHeaderLine('authorization-x');
+    if (UserController::validateToken($token_header)) {
+
+        $id = $args['id'];
+        $response = $response->withJson(EstadosObraController::getAllByObraId($id));
+        return $response;
+    } else {
+
+        return $response->withStatus(203)
+                        ->withHeader('Content-Type', 'text/html')
+                        ->write('203 Non-Authoritative Information. (authorization-x)');
+    }
+});
+
+$app->post('/estados/create', 
+function (Request $request, Response $response) {
+
+    $token_header = $request->getHeaderLine('authorization-x');
+    if (UserController::validateToken($token_header)) {
+        $data = $request->getParsedBody();
+        $response = $response->withJson(EstadosObraController::create($data));
+        return $response;
+    } else {
+        return $response->withStatus(203)
+                        ->withHeader('Content-Type', 'text/html')
+                        ->write('203 Non-Authoritative Information. (authorization-x)');
+    }
+});
+
+$app->put('/estados/update', 
+function (Request $request, Response $response) {
+
+    $token_header = $request->getHeaderLine('authorization-x');
+    if (UserController::validateToken($token_header)) {
+        $data = $request->getParsedBody();
+        $response = $response->withJson(EstadosObraController::update($data));
+        return $response;
+    } else {
+        return $response->withStatus(203)
+                        ->withHeader('Content-Type', 'text/html')
+                        ->write('203 Non-Authoritative Information. (authorization-x)');
+    }
+});
+
+$app->delete('/estados/delete/{id}', 
+    function (Request $request, Response $response, array $args) {
+        $token_header = $request->getHeaderLine('authorization-x');
+        if (UserController::validateToken($token_header)) {
+
+            $id = $args['id'];
+            $response = $response->withJson(EstadosObraController::delete($id));
+            return $response;
+        } else {
+            return $response->withStatus(203)
+                            ->withHeader('Content-Type', 'text/html')
+                            ->write('203 Non-Authoritative Information. (authorization-x)');
+        }
+});
+
+
 $app->run();
