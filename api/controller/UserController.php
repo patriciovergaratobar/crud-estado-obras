@@ -47,33 +47,33 @@ class UserController {
     function create($data) {
 
         if ($data['rut'] == null || $data['email'] == null || $data['password'] == null || $data['nombre'] == null || $data['apellido'] == null || $data['tipoPerfil'] == null || $data['activo'] == null || $data['empresaId'] == null) {
-            return array('status' => 'false', 'action' => 'signIn', 'message' => 'Null');
+            return array('status' => 'false', 'action' => 'create', 'message' => 'Null');
         }
 
         $userByRut = UserPersistence::userByRut($data['rut']);
         if ($userByRut == null || $userByRut['rut'] == null) {
 
             $isOk = UserPersistence::create($data);
-            return array('status' => $isOk, 'action' => 'signIn', 'message' => 'created');
+            return array('status' => $isOk, 'action' => 'create', 'message' => 'created');
         } else {
 
-            return array('status' => 'false', 'action' => 'signIn', 'message' => 'exists');
+            return array('status' => 'false', 'action' => 'create', 'message' => 'exists');
         }
     }
 
     function update($data) {
 
         if ($data['rut'] == null || $data['email'] == null || $data['password'] == null || $data['nombre'] == null || $data['apellido'] == null || $data['tipoPerfil'] == null || $data['activo'] == null || $data['empresaId'] == null) {
-            return array('status' => 'false', 'action' => 'signIn', 'message' => 'Null');
+            return array('status' => 'false', 'action' => 'update', 'message' => 'Null');
         }
         $isOk = UserPersistence::update($data);
-        return array('status' => $isOk, 'action' => 'signIn', 'message' => 'update');
+        return array('status' => $isOk, 'action' => 'update', 'message' => 'update');
     }
 
     function delete($rut) {
 
         $isOk = UserPersistence::delete($rut);
-        return array('status' => $isOk, 'action' => 'signIn', 'message' => 'delete');
+        return array('status' => $isOk, 'action' => 'delete', 'message' => 'delete');
     }
 
 

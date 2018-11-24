@@ -124,6 +124,92 @@ $app->delete('/user/delete/{rut}',
 });
 
 
+/**
+ * 
+ * 
+ * EMPRESA WS 
+ * 
+ * 
+ */
+
+$app->get('/empresa', function (Request $request, Response $response, array $args) {
+
+    $token_header = $request->getHeaderLine('authorization-x');
+    if (UserController::validateToken($token_header)) {
+
+        $response = $response->withJson(EmpresaController::getAll());
+        return $response;
+    } else {
+
+        return $response->withStatus(203)
+                        ->withHeader('Content-Type', 'text/html')
+                        ->write('203 Non-Authoritative Information. (authorization-x)');
+    }
+});
+
+$app->get('/empresa/id/{id}', function (Request $request, Response $response, array $args) {
+
+    $token_header = $request->getHeaderLine('authorization-x');
+    if (UserController::validateToken($token_header)) {
+
+        $id = $args['id'];
+        $response = $response->withJson(EmpresaController::getById($id));
+        return $response;
+    } else {
+
+        return $response->withStatus(203)
+                        ->withHeader('Content-Type', 'text/html')
+                        ->write('203 Non-Authoritative Information. (authorization-x)');
+    }
+});
+
+$app->post('/empresa/create', 
+function (Request $request, Response $response) {
+
+    $token_header = $request->getHeaderLine('authorization-x');
+    if (UserController::validateToken($token_header)) {
+        $data = $request->getParsedBody();
+        $response = $response->withJson(EmpresaController::create($data));
+        return $response;
+    } else {
+        return $response->withStatus(203)
+                        ->withHeader('Content-Type', 'text/html')
+                        ->write('203 Non-Authoritative Information. (authorization-x)');
+    }
+});
+
+$app->put('/empresa/update', 
+function (Request $request, Response $response) {
+
+    $token_header = $request->getHeaderLine('authorization-x');
+    if (UserController::validateToken($token_header)) {
+        $data = $request->getParsedBody();
+        $response = $response->withJson(EmpresaController::update($data));
+        return $response;
+    } else {
+        return $response->withStatus(203)
+                        ->withHeader('Content-Type', 'text/html')
+                        ->write('203 Non-Authoritative Information. (authorization-x)');
+    }
+});
+
+$app->delete('/empresa/delete/{id}', 
+    function (Request $request, Response $response, array $args) {
+        $token_header = $request->getHeaderLine('authorization-x');
+        if (UserController::validateToken($token_header)) {
+
+            $id = $args['id'];
+            $response = $response->withJson(EmpresaController::delete($id));
+            return $response;
+        } else {
+            return $response->withStatus(203)
+                            ->withHeader('Content-Type', 'text/html')
+                            ->write('203 Non-Authoritative Information. (authorization-x)');
+        }
+});
+
+
+
 
 
 $app->run();
