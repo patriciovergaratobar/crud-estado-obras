@@ -209,6 +209,103 @@ $app->delete('/empresa/delete/{id}',
 });
 
 
+/**
+ * 
+ * Proyectos WS
+ * 
+ */
+
+$app->get('/proyecto', function (Request $request, Response $response, array $args) {
+
+    $token_header = $request->getHeaderLine('authorization-x');
+    if (UserController::validateToken($token_header)) {
+
+        $response = $response->withJson(ProyectoController::getAll());
+        return $response;
+    } else {
+
+        return $response->withStatus(203)
+                        ->withHeader('Content-Type', 'text/html')
+                        ->write('203 Non-Authoritative Information. (authorization-x)');
+    }
+});
+
+$app->get('/proyecto/id/{id}', function (Request $request, Response $response, array $args) {
+
+    $token_header = $request->getHeaderLine('authorization-x');
+    if (UserController::validateToken($token_header)) {
+
+        $id = $args['id'];
+        $response = $response->withJson(ProyectoController::getById($id));
+        return $response;
+    } else {
+
+        return $response->withStatus(203)
+                        ->withHeader('Content-Type', 'text/html')
+                        ->write('203 Non-Authoritative Information. (authorization-x)');
+    }
+});
+
+$app->get('/proyecto/empresa/{id}', function (Request $request, Response $response, array $args) {
+
+    $token_header = $request->getHeaderLine('authorization-x');
+    if (UserController::validateToken($token_header)) {
+
+        $id = $args['id'];
+        $response = $response->withJson(ProyectoController::getAllByEmpresaId($id));
+        return $response;
+    } else {
+
+        return $response->withStatus(203)
+                        ->withHeader('Content-Type', 'text/html')
+                        ->write('203 Non-Authoritative Information. (authorization-x)');
+    }
+});
+
+$app->post('/proyecto/create', 
+function (Request $request, Response $response) {
+
+    $token_header = $request->getHeaderLine('authorization-x');
+    if (UserController::validateToken($token_header)) {
+        $data = $request->getParsedBody();
+        $response = $response->withJson(ProyectoController::create($data));
+        return $response;
+    } else {
+        return $response->withStatus(203)
+                        ->withHeader('Content-Type', 'text/html')
+                        ->write('203 Non-Authoritative Information. (authorization-x)');
+    }
+});
+
+$app->put('/proyecto/update', 
+function (Request $request, Response $response) {
+
+    $token_header = $request->getHeaderLine('authorization-x');
+    if (UserController::validateToken($token_header)) {
+        $data = $request->getParsedBody();
+        $response = $response->withJson(ProyectoController::update($data));
+        return $response;
+    } else {
+        return $response->withStatus(203)
+                        ->withHeader('Content-Type', 'text/html')
+                        ->write('203 Non-Authoritative Information. (authorization-x)');
+    }
+});
+
+$app->delete('/proyecto/delete/{id}', 
+    function (Request $request, Response $response, array $args) {
+        $token_header = $request->getHeaderLine('authorization-x');
+        if (UserController::validateToken($token_header)) {
+
+            $id = $args['id'];
+            $response = $response->withJson(ProyectoController::delete($id));
+            return $response;
+        } else {
+            return $response->withStatus(203)
+                            ->withHeader('Content-Type', 'text/html')
+                            ->write('203 Non-Authoritative Information. (authorization-x)');
+        }
+});
 
 
 
