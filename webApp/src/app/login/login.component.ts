@@ -57,6 +57,12 @@ export class LoginComponent implements OnInit {
 
         console.log("Usuario o contraseña valida.");
         localStorage.setItem("sess", response['token']);
+        let user = response['user'];
+        if (user['tipoPerfil'] == 'ADMIN') {
+          localStorage.setItem("isAdmin", 'ADMIN');
+        } else {
+          localStorage.setItem("isAdmin", 'NO');
+        }
         localStorage.setItem("user", JSON.stringify(response['user']));
         window.location.href = "home";
       }

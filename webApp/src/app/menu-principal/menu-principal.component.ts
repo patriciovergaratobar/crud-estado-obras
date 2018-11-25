@@ -21,6 +21,8 @@ export class MenuPrincipalComponent implements OnInit  {
 
   public isloging = false;
 
+  public isAdmin = false;
+
   constructor(private breakpointObserver: BreakpointObserver, private router: Router, private sesionService: SesionService) {
     
   }
@@ -29,10 +31,14 @@ export class MenuPrincipalComponent implements OnInit  {
 
     this.validarPath(); 
     let token = localStorage.getItem('sess');
+    
     if (token != undefined && token != null && token != "" && token.length > 5) {
 
       this.isloging = true;
-      
+      let admin = localStorage.getItem('isAdmin');
+      if (admin == 'ADMIN') {
+        this.isAdmin = true;
+      }
     }
   }
 
