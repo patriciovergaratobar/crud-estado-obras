@@ -1,0 +1,113 @@
+import { Component, OnInit, Injectable } from '@angular/core';
+import {FormControl, Validators} from '@angular/forms';
+import {SesionService} from 'src/app/services/sesion.service';
+import { MatDialog } from '@angular/material';
+import { DialogoSimpleComponent } from 'src/app/dialogo-simple/dialogo-simple.component';
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
+})
+export class LoginComponent implements OnInit {
+
+  hidePass = true;
+  isLoading = false;
+  public rutLogin = "";
+  public passLogin = "";
+
+  constructor( private sesionService: SesionService, private dialog: MatDialog) { }
+
+  ngOnInit() {  }
+
+  /**
+   * Funcion que realiza el login.
+   * 
+   */
+  logIn() {
+
+    this.isLoading = true;
+    //Falta validaciones
+    if(this.validarForm() == false) {
+      this.isLoading = false;
+      return false;
+    }
+
+    this.sesionService.login(this.rutLogin, this.passLogin).subscribe( response => {
+
+      if (response['login'] == 'OFF') {
+    
+        this.isLoading = false;
+        let dialog = this.dialog.open(DialogoSimpleComponent,{
+          data: {
+            titulo: "Login Incorrecto",
+            contenido: "Tu rut y/o contraseña son incorrectos.",
+            salirText : "De acuerdo"
+          }
+        });
+        
+        dialog.afterClosed().subscribe(result => {
+          if (result == 'confirm') {
+            console.log('Cerra');
+          }
+        });
+      }
+
+      if (response['login'] == true) {
+
+        console.log("Usuario o contraseña valida.");
+        localStorage.setItem("sess", response['token']);
+        localStorage.setItem("user", JSON.stringify(response['user']));
+        window.location.href = "home";
+      }
+    });
+  }
+
+  /**
+   * Funcion que valida el formulario.
+   * 
+   */
+  validarForm() {
+
+    let valido = true;
+
+    if (this.rutLogin == "") {
+      valido = false;
+      let dialog = this.dialog.open(DialogoSimpleComponent,{
+        data: {
+          titulo: "Login Incorrecto",
+          contenido: "Debes ingresar un rut.",
+          salirText : "De acuerdo"
+        }
+      });
+      
+      dialog.afterClosed().subscribe(result => {
+        if (result == 'confirm') {
+          console.log('Cerra');
+        }
+      });
+
+    } else if (this.passLogin == "") {
+
+      valido = false;
+      let dialog = this.dialog.open(DialogoSimpleComponent,{
+        data: {
+          titulo: "Login Incorrecto",
+          contenido: "Debes ingresar la contraseña.",
+          salirText : "De acuerdo"
+        }
+      });
+      
+      dialog.afterClosed().subscribe(result => {
+        if (result == 'confirm') {
+          console.log('Cerra');
+        }
+      });
+      
+    }
+
+    return valido;
+  }
+
+
+}

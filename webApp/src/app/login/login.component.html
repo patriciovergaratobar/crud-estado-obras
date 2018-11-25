@@ -1,0 +1,32 @@
+
+<div class="container-login">
+  <mat-card>
+      <mat-card-title class="element-center">
+              Iniciar Sesión
+        </mat-card-title>  
+      
+  
+      <mat-card-actions class="element-center">
+          <mat-form-field class="mat-form-field-login">
+              <input matInput placeholder="Rut" [(ngModel)]="rutLogin" required>
+          </mat-form-field>
+      </mat-card-actions>
+  
+      <mat-card-actions class="element-center">
+      <mat-form-field class="mat-form-field-login">
+          <input matInput placeholder="Contraseña" [type]="hidePass ? 'password' : 'text'" [(ngModel)]="passLogin" (keydown.enter)="logIn()" required>
+          <mat-icon matSuffix (click)="hidePass = !hidePass">{{hidePass ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </mat-form-field>
+    </mat-card-actions>
+   
+    <mat-card-actions class="element-center">
+        <button mat-raised-button color="warn" (click)="logIn()">INICIAR</button>
+    </mat-card-actions>
+
+
+
+    <mat-card-footer *ngIf="isLoading" class="element-center">
+            <mat-progress-bar mode="query"></mat-progress-bar>
+    </mat-card-footer>
+    </mat-card> 
+</div>

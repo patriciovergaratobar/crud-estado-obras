@@ -1,0 +1,40 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+  
+.container > * {
+    width: 100%;
+}
+.container-login {
+    width: 100%;
+    min-height: 10vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  
+}
+
+.element-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+mat-card.mat-card {
+    min-width: 30em;
+}
+
+.mat-form-field-login {
+    min-width: 15em !important;
+}
+
+.buttom-footer {
+    color: #565555;
+}
