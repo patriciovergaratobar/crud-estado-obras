@@ -22,8 +22,8 @@
       </button>
       <span *ngIf="!isloging">Sistema de Estados de Obras</span>
       <span class="fill-remaining-space"></span>
-      <span *ngIf="isloging"><button mat-button routerLink="/home"><mat-icon>home</mat-icon></button></span>
-      <span *ngIf="isloging && isAdmin"><button mat-button [matMenuTriggerFor]="menu"><mat-icon>settings</mat-icon></button>
+      <span *ngIf="isloging"><button mat-button matTooltip="Home" routerLink="/home"><mat-icon>home</mat-icon></button></span>
+      <span *ngIf="isloging && isAdmin"><button mat-button matTooltip="Administración" [matMenuTriggerFor]="menu"><mat-icon>settings</mat-icon></button>
         <mat-menu #menu="matMenu">
           <button mat-menu-item routerLink="/empresasadmin">Empresas</button>
           <button mat-menu-item routerLink="/usuariosadmin">Usuarios</button>
@@ -32,7 +32,7 @@
           <button mat-menu-item routerLink="/imagenesadmin">Archivos</button>
           <button mat-menu-item routerLink="/estadosadmin">Estados</button>
         </mat-menu></span>
-      <span *ngIf="isloging"><button mat-button (click)="logOut()" ><mat-icon>power_settings_new</mat-icon></button></span>
+      <span *ngIf="isloging"><button mat-button matTooltip="Cerrar Sesión" (click)="logOut()" ><mat-icon>power_settings_new</mat-icon></button></span>
     </mat-toolbar>
     <!-- Add Content Here -->
     <router-outlet></router-outlet>

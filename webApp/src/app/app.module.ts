@@ -56,6 +56,7 @@ import { EstadosObrasAdminComponent } from './estados-obras-admin/estados-obras-
 import { LoginComponent } from './login/login.component';
 //import { DialogoSimpleComponent } from './dialogo-simple/dialogo-simple.component';
 import { DialogoSimpleComponent } from 'src/app/dialogo-simple/dialogo-simple.component';
+import { EmpresasTablaComponent } from './empresas-tabla/empresas-tabla.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { DialogoSimpleComponent } from 'src/app/dialogo-simple/dialogo-simple.co
     ImagenesAdminComponent,
     EstadosObrasAdminComponent,
     LoginComponent,
-    DialogoSimpleComponent
+    DialogoSimpleComponent,
+    EmpresasTablaComponent
   ],
   entryComponents: [
     DialogoSimpleComponent

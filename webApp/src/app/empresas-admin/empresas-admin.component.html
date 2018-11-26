@@ -1,3 +1,10 @@
-<p>
-  empresas-admin works!
-</p>
+
+<h2>Empresas</h2>
+
+<mat-card>
+    <button mat-raised-button (click)="openCreate()" color="warn"><mat-icon>add</mat-icon>Crear</button>  
+    <mat-form-field class="mat-form-field-login">
+        <input matInput placeholder="Buscar..." [(ngModel)]="buscar">
+    </mat-form-field>
+</mat-card>
+<app-empresas-tabla #tabla></app-empresas-tabla>
