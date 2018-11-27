@@ -57,6 +57,8 @@ import { LoginComponent } from './login/login.component';
 //import { DialogoSimpleComponent } from './dialogo-simple/dialogo-simple.component';
 import { DialogoSimpleComponent } from 'src/app/dialogo-simple/dialogo-simple.component';
 import { EmpresasTablaComponent } from './empresas-tabla/empresas-tabla.component';
+import { CrearEmpresaComponent } from './formularios/crear-empresa/crear-empresa.component';
+import { EditarEmpresaComponent } from './formularios/editar-empresa/editar-empresa.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +75,9 @@ import { EmpresasTablaComponent } from './empresas-tabla/empresas-tabla.componen
     EstadosObrasAdminComponent,
     LoginComponent,
     DialogoSimpleComponent,
-    EmpresasTablaComponent
+    EmpresasTablaComponent,
+    CrearEmpresaComponent,
+    EditarEmpresaComponent
   ],
   entryComponents: [
     DialogoSimpleComponent

@@ -1,6 +1,7 @@
 {
     "/api/*": {
-        "target": "http://localhost:3000/api",
+        "target_": "http://localhost:3000/api",
+        "target": "http://localhost/crud-estado-obras/api",        
         "secure": false,
         "logLevel": "debug",
         "changeOrigin": true,
