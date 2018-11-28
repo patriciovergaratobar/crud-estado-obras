@@ -12,6 +12,8 @@ import { LoginComponent } from './login/login.component';
 import { CrearEmpresaComponent } from './formularios/crear-empresa/crear-empresa.component';
 import { EditarEmpresaComponent } from './formularios/editar-empresa/editar-empresa.component';
 import { DialogoSimpleComponent } from 'src/app/dialogo-simple/dialogo-simple.component';
+import { CrearUsuarioComponent } from './formularios/crear-usuario/crear-usuario.component';
+import { EditarUsuarioComponent } from './formularios/editar-usuario/editar-usuario.component';
 
 const routes: Routes = [ {
   path:'',
@@ -43,6 +45,12 @@ const routes: Routes = [ {
 },{
   path:'usuariosadmin',
   component:UsuariosAdminComponent
+},{
+  path:'crear-usuariosadmin',
+  component:CrearUsuarioComponent
+},{
+  path:'editar-usuariosadmin/:id',
+  component:EditarUsuarioComponent
 },{
   path:'imagenesadmin',
   component:ImagenesAdminComponent

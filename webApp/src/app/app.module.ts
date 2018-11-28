@@ -59,6 +59,9 @@ import { DialogoSimpleComponent } from 'src/app/dialogo-simple/dialogo-simple.co
 import { EmpresasTablaComponent } from './empresas-tabla/empresas-tabla.component';
 import { CrearEmpresaComponent } from './formularios/crear-empresa/crear-empresa.component';
 import { EditarEmpresaComponent } from './formularios/editar-empresa/editar-empresa.component';
+import { EditarUsuarioComponent } from './formularios/editar-usuario/editar-usuario.component';
+import { CrearUsuarioComponent } from './formularios/crear-usuario/crear-usuario.component';
+import { UsuariosTablaComponent } from './usuarios-tabla/usuarios-tabla.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +80,10 @@ import { EditarEmpresaComponent } from './formularios/editar-empresa/editar-empr
     DialogoSimpleComponent,
     EmpresasTablaComponent,
     CrearEmpresaComponent,
-    EditarEmpresaComponent
+    EditarEmpresaComponent,
+    EditarUsuarioComponent,
+    CrearUsuarioComponent,
+    UsuariosTablaComponent
   ],
   entryComponents: [
     DialogoSimpleComponent
