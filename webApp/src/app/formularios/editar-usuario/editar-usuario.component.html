@@ -1,3 +1,57 @@
-<p>
-  editar-usuario works!
-</p>
+
+<h2>Usuarios</h2>
+
+<mat-card>
+
+    <mat-card-title class="element-center">
+        Editar Usuarios
+  </mat-card-title>  
+
+   
+    <mat-card-content>
+        <mat-form-field class="mat-form-field-login">
+            <input matInput placeholder="Rut" disabled [(ngModel)]="usuario.rut" required>
+        </mat-form-field>
+
+        <mat-checkbox class="example-margin" [(ngModel)]="usuario.activo"> Activado</mat-checkbox>
+    </mat-card-content>
+    <mat-card-content>
+      <mat-form-field class="mat-form-field-login">
+          <input matInput placeholder="Nombre" [(ngModel)]="usuario.nombre" required>
+      </mat-form-field>
+      <mat-form-field class="mat-form-field-login">
+        <input matInput placeholder="Apellido" [(ngModel)]="usuario.apellido" required>  
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-content>
+      <mat-form-field class="mat-form-field-login">
+          <input matInput placeholder="E-Mail" [(ngModel)]="usuario.email" required>
+      </mat-form-field>
+      <mat-form-field class="mat-form-field-login">
+        <input matInput placeholder="Contraseña" [(ngModel)]="usuario.password" required>
+    </mat-form-field>
+    </mat-card-content>
+
+    <mat-card-content>
+      <mat-form-field class="mat-form-field-login">
+          <mat-select placeholder="Tipo Perfil" [(ngModel)]="usuario.tipoPerfil">
+            <mat-option *ngFor="let tipo of tiposUsuario" [value]="tipo.value">
+              {{tipo.viewValue}}
+            </mat-option>
+          </mat-select>
+      </mat-form-field>
+      <mat-form-field class="mat-form-field-login">
+        <mat-select placeholder="Empresa" [(ngModel)]="usuario.empresaId">
+          <mat-option *ngFor="let e of empresas" [value]="e.empresaId">
+            {{e.nombreEmpresa}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button color="warn" (click)="guardar()"><mat-icon>save</mat-icon>Guardar</button>  
+      <button mat-raised-button color="warn" routerLink="/usuariosadmin"><mat-icon>close</mat-icon>Cancelar</button>
+    </mat-card-actions>
+</mat-card>
+

@@ -25,7 +25,6 @@ export class EditarEmpresaComponent implements OnInit {
     console.log(this.route.snapshot.paramMap.get('id'));
     this.id = Number.parseInt(this.route.snapshot.paramMap.get('id'));
     this.loadDatos(this.id);
-
   }
 
   loadDatos(empresaId) {

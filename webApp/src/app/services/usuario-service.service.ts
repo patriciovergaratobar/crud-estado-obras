@@ -39,14 +39,14 @@ export class UsuarioServiceService {
     return this.http.get(this.BASE_URL.toString().concat("/id/").concat(rut.toString()), this.httpOptions );
   }
 
-  create(empresa: Usuario) {
+  create(usuario: Usuario) {
 
-    return this.http.post(this.BASE_URL.toString().concat("/create"),JSON.stringify(empresa), this.httpOptions);
+    return this.http.post(this.BASE_URL.toString().concat("/create"),JSON.stringify(usuario), this.httpOptions);
   }
 
-  update(empresa: Usuario) {
+  update(usuario: Usuario) {
 
-    return this.http.put(this.BASE_URL.toString().concat("/update"),JSON.stringify(empresa), this.httpOptions);
+    return this.http.put(this.BASE_URL.toString().concat("/update"),JSON.stringify(usuario), this.httpOptions);
   }
 
   delete(id) {

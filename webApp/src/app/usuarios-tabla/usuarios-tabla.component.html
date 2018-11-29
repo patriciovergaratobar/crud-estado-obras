@@ -40,7 +40,7 @@
     <ng-container matColumnDef="opciones">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Opciones</th>
       <td mat-cell *matCellDef="let row">
-        <button mat-button matTooltip="Editar el dato" [routerLink]="['/editar-empresasadmin', row.empresaId]"><mat-icon>edit</mat-icon></button>
+        <button mat-button matTooltip="Editar el dato" [routerLink]="['/editar-usuariosadmin', row.rut]"><mat-icon>edit</mat-icon></button>
         <button mat-button matTooltip="Eliminar el dato" (click)="delete(row)" ><mat-icon>delete_sweep</mat-icon></button>
       </td>
     </ng-container>
