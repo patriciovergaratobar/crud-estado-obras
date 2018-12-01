@@ -63,7 +63,7 @@ class UserController {
 
     function update($data) {
 
-        if ($data['rut'] == null || $data['email'] == null || $data['password'] == null || $data['nombre'] == null || $data['apellido'] == null || $data['tipoPerfil'] == null || $data['activo'] == null || $data['empresaId'] == null) {
+        if ($data['rut'] == null || $data['email'] == null || $data['password'] == null || $data['nombre'] == null || $data['apellido'] == null || $data['tipoPerfil'] == null  || $data['empresaId'] == null) {
             return array('status' => 'false', 'action' => 'update', 'message' => 'Null');
         }
         $isOk = UserPersistence::update($data);
