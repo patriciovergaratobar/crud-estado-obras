@@ -102,7 +102,7 @@ export class ObrasAdminComponent implements OnInit {
           'Eliminado!',
           'El dato fue eliminado.',
           'success');
-          window.location.href = "Obrasadmin";
+          window.location.href = "obrasadmin";
 
       });
 

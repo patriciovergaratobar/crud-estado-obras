@@ -1,3 +1,51 @@
-<p>
-  crear-obra works!
-</p>
+
+<h2 mat-dialog-title>Obras</h2>
+
+<mat-card>
+
+    <mat-card-title class="element-center">
+        Crear Obras
+  </mat-card-title>  
+
+   
+    <mat-card-content>
+        <mat-form-field class="mat-form-field-login">
+            <input matInput placeholder="Nombre" [(ngModel)]="obra.nombreObra" required>
+        </mat-form-field>
+    </mat-card-content>
+
+    <mat-card-content>
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Fecha Inicio" [(ngModel)]="obra.fechaInicio">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field class="mat-form-field-login">
+        <input matInput placeholder="Dirección" [(ngModel)]="obra.direccion" required>  
+      </mat-form-field>
+    </mat-card-content>
+
+    <mat-card-content>
+     
+      <mat-form-field class="mat-form-field-login">
+        <mat-select placeholder="Empresa" [(ngModel)]="empresaSeleccionada" (selectionChange)="loadProyectosByEmpresa($event.value)" >
+          <mat-option *ngFor="let e of empresas" [value]="e.empresaId">
+            {{e.nombreEmpresa}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="mat-form-field-login">
+      <mat-select placeholder="Proyecto" [(ngModel)]="obra.proyectosId">
+        <mat-option *ngFor="let p of proyectos" [value]="p.proyectosId">
+          {{p.nombreProyecto}}
+        </mat-option>
+      </mat-select>
+  </mat-form-field>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button color="warn" (click)="guardar()"><mat-icon>save</mat-icon>Guardar</button>  
+      <button mat-raised-button color="warn" routerLink="/obrasadmin"><mat-icon>close</mat-icon>Cancelar</button>
+    </mat-card-actions>
+</mat-card>
+
