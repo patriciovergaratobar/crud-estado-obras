@@ -62,6 +62,14 @@ import { EditarEmpresaComponent } from './formularios/editar-empresa/editar-empr
 import { EditarUsuarioComponent } from './formularios/editar-usuario/editar-usuario.component';
 import { CrearUsuarioComponent } from './formularios/crear-usuario/crear-usuario.component';
 import { UsuariosTablaComponent } from './usuarios-tabla/usuarios-tabla.component';
+import { CrearProyectoComponent } from './formularios/crear-proyecto/crear-proyecto.component';
+import { EditarProyectoComponent } from './formularios/editar-proyecto/editar-proyecto.component';
+import { CrearObraComponent } from './formularios/crear-obra/crear-obra.component';
+import { EditarObraComponent } from './formularios/editar-obra/editar-obra.component';
+import { CrearEstadoComponent } from './formularios/crear-estado/crear-estado.component';
+import { EditarEstadoComponent } from './formularios/editar-estado/editar-estado.component';
+import { CrearArchivoComponent } from './formularios/crear-archivo/crear-archivo.component';
+import { EditarArchivoComponent } from './formularios/editar-archivo/editar-archivo.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +91,15 @@ import { UsuariosTablaComponent } from './usuarios-tabla/usuarios-tabla.componen
     EditarEmpresaComponent,
     EditarUsuarioComponent,
     CrearUsuarioComponent,
-    UsuariosTablaComponent
+    UsuariosTablaComponent,
+    CrearProyectoComponent,
+    EditarProyectoComponent,
+    CrearObraComponent,
+    EditarObraComponent,
+    CrearEstadoComponent,
+    EditarEstadoComponent,
+    CrearArchivoComponent,
+    EditarArchivoComponent
   ],
   entryComponents: [
     DialogoSimpleComponent
