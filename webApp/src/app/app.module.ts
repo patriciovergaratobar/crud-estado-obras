@@ -70,6 +70,7 @@ import { CrearEstadoComponent } from './formularios/crear-estado/crear-estado.co
 import { EditarEstadoComponent } from './formularios/editar-estado/editar-estado.component';
 import { CrearArchivoComponent } from './formularios/crear-archivo/crear-archivo.component';
 import { EditarArchivoComponent } from './formularios/editar-archivo/editar-archivo.component';
+import { ProyectoTablaComponent } from './proyecto-tabla/proyecto-tabla.component';
 
 @NgModule({
   declarations: [
@@ -99,7 +100,8 @@ import { EditarArchivoComponent } from './formularios/editar-archivo/editar-arch
     CrearEstadoComponent,
     EditarEstadoComponent,
     CrearArchivoComponent,
-    EditarArchivoComponent
+    EditarArchivoComponent,
+    ProyectoTablaComponent
   ],
   entryComponents: [
     DialogoSimpleComponent
