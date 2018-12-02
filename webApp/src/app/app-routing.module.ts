@@ -16,6 +16,8 @@ import { CrearUsuarioComponent } from './formularios/crear-usuario/crear-usuario
 import { EditarUsuarioComponent } from './formularios/editar-usuario/editar-usuario.component';
 import { CrearProyectoComponent } from './formularios/crear-proyecto/crear-proyecto.component';
 import { EditarProyectoComponent } from './formularios/editar-proyecto/editar-proyecto.component';
+import { CrearObraComponent } from './formularios/crear-obra/crear-obra.component';
+import { EditarObraComponent } from './formularios/editar-obra/editar-obra.component';
 
 const routes: Routes = [ {
   path:'',
@@ -50,6 +52,12 @@ const routes: Routes = [ {
 },{
   path:'obrasadmin',
   component:ObrasAdminComponent
+},{
+  path:'crear-obrasadmin',
+  component: CrearObraComponent
+},{
+  path:'editar-obrasadmin/:id',
+  component:EditarObraComponent
 },{
   path:'usuariosadmin',
   component:UsuariosAdminComponent

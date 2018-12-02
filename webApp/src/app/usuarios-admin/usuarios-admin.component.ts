@@ -15,7 +15,6 @@ import { Usuario } from '../model/usuario';
   styleUrls: ['./usuarios-admin.component.css']
 })
 export class UsuariosAdminComponent implements OnInit {
-
   
   @ViewChild('tabla') tabla: UsuariosTablaComponent;
 

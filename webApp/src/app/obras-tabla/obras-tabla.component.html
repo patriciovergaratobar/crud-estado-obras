@@ -1,0 +1,45 @@
+<div class="mat-elevation-z8">
+  <table mat-table class="full-width-table" [dataSource]="dataSource" matSort aria-label="Elements">
+    <!-- Id Column -->
+    <ng-container matColumnDef="obraId">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+      <td mat-cell *matCellDef="let row">{{row.obraId}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="nombreObra">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre Obra</th>
+      <td mat-cell *matCellDef="let row">{{row.nombreObra}}</td>
+    </ng-container>
+    <ng-container matColumnDef="fechaInicio">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha Inicio</th>
+      <td mat-cell *matCellDef="let row">{{row.fechaInicio}}</td>
+    </ng-container>
+    <ng-container matColumnDef="direccion">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Dirección</th>
+      <td mat-cell *matCellDef="let row">{{row.direccion}}</td>
+    </ng-container>
+    <ng-container matColumnDef="nombreProyecto">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre Proyecto</th>
+      <td mat-cell *matCellDef="let row">{{row.nombreProyecto}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="opciones">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Opciones</th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-button matTooltip="Editar el dato" [routerLink]="['/editar-obrasadmin', row.obraId]"><mat-icon>edit</mat-icon></button>
+        <button mat-button matTooltip="Eliminar el dato" (click)="delete(row)" ><mat-icon>delete_sweep</mat-icon></button>
+      </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator #paginator
+      [length]="dataSource.data.length"
+      [pageIndex]="0"
+      [pageSize]="50"
+      [pageSizeOptions]="[25, 50, 100, 250]">
+  </mat-paginator>
+</div>

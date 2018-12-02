@@ -71,6 +71,7 @@ import { EditarEstadoComponent } from './formularios/editar-estado/editar-estado
 import { CrearArchivoComponent } from './formularios/crear-archivo/crear-archivo.component';
 import { EditarArchivoComponent } from './formularios/editar-archivo/editar-archivo.component';
 import { ProyectoTablaComponent } from './proyecto-tabla/proyecto-tabla.component';
+import { ObrasTablaComponent } from './obras-tabla/obras-tabla.component';
 
 @NgModule({
   declarations: [
@@ -101,7 +102,8 @@ import { ProyectoTablaComponent } from './proyecto-tabla/proyecto-tabla.componen
     EditarEstadoComponent,
     CrearArchivoComponent,
     EditarArchivoComponent,
-    ProyectoTablaComponent
+    ProyectoTablaComponent,
+    ObrasTablaComponent
   ],
   entryComponents: [
     DialogoSimpleComponent
