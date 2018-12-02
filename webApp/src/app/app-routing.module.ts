@@ -14,6 +14,8 @@ import { EditarEmpresaComponent } from './formularios/editar-empresa/editar-empr
 import { DialogoSimpleComponent } from 'src/app/dialogo-simple/dialogo-simple.component';
 import { CrearUsuarioComponent } from './formularios/crear-usuario/crear-usuario.component';
 import { EditarUsuarioComponent } from './formularios/editar-usuario/editar-usuario.component';
+import { CrearProyectoComponent } from './formularios/crear-proyecto/crear-proyecto.component';
+import { EditarProyectoComponent } from './formularios/editar-proyecto/editar-proyecto.component';
 
 const routes: Routes = [ {
   path:'',
@@ -39,6 +41,12 @@ const routes: Routes = [ {
 },{
   path:'proyectosadmin',
   component:ProyectosAdminComponent
+},{
+  path:'crear-proyectosadmin',
+  component:CrearProyectoComponent
+},{
+  path:'editar-proyectosadmin/:id',
+  component:EditarProyectoComponent
 },{
   path:'obrasadmin',
   component:ObrasAdminComponent

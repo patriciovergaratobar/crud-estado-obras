@@ -18,7 +18,7 @@ export class ProyectoTablaComponent implements OnInit {
   dataSource: ProyectoTablaDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['proyectosId', 'nombreProyecto', 'descripcion', 'empresaId', 'nombreEmpresa'];
+  displayedColumns = ['proyectosId', 'nombreProyecto', 'descripcion', 'nombreEmpresa', 'opciones'];
 
   ngOnInit() {
 

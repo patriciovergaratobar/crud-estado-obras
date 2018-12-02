@@ -1,3 +1,10 @@
-<p>
-  proyectos-admin works!
-</p>
+
+<h2>Proyectos</h2>
+
+<mat-card>
+    <button mat-raised-button routerLink="/crear-proyectosadmin" color="warn"><mat-icon>add</mat-icon>Crear</button>  
+    <mat-form-field class="mat-form-field-login">
+        <input matInput placeholder="Buscar..." (keydown.enter)="filter()" [(ngModel)]="filterText">
+    </mat-form-field>
+</mat-card>
+<app-proyecto-tabla #tabla></app-proyecto-tabla>
