@@ -42,10 +42,10 @@ export class ProyectosAdminComponent implements OnInit {
     if (this.filterText != undefined && this.filterText != null && this.filterText != "") {
       console.log(" ---filter "+this.filterText);
       let datos = this.listaProyecto.filter((d) => 
-        d.descripcion.toUpperCase().includes(this.filterText.toUpperCase())
-        || d.nombreEmpresa.toUpperCase().includes(this.filterText.toUpperCase())
+        d.proyectosId.toString().includes(this.filterText.toUpperCase())
         || d.nombreProyecto.toUpperCase().includes(this.filterText.toUpperCase())
-        || d.proyectosId.toString().includes(this.filterText.toUpperCase())
+        || d.descripcion.toUpperCase().includes(this.filterText.toUpperCase())
+      
       );
 
       this.tabla.addData(datos);
@@ -93,7 +93,7 @@ export class ProyectosAdminComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
 
-        this.empresaService.delete(proyecto.proyectosId).subscribe(res => { 
+        this.proyectoService.delete(proyecto.proyectosId).subscribe(res => { 
           swal(
           'Eliminado!',
           'El dato fue eliminado.',

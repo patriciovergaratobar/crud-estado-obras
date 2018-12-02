@@ -1,3 +1,37 @@
-<p>
-  editar-proyecto works!
-</p>
+<h2>Proyectos</h2>
+
+<mat-card>
+
+    <mat-card-title class="element-center">
+        Editar Proyectos
+  </mat-card-title>  
+
+   
+    <mat-card-content>
+        <mat-form-field class="mat-form-field-login">
+            <input matInput placeholder="Nombre" [(ngModel)]="proyecto.nombreProyecto" required>
+        </mat-form-field>
+    </mat-card-content>
+
+    <mat-card-content>
+      <mat-form-field class="mat-form-field-login">
+          <textarea matInput placeholder="Descripción" [(ngModel)]="proyecto.descripcion" required></textarea>
+      </mat-form-field>
+    </mat-card-content>
+
+    <mat-card-content>
+      <mat-form-field class="mat-form-field-login">
+        <mat-select placeholder="Empresa" [(ngModel)]="proyecto.empresaId">
+          <mat-option *ngFor="let e of empresas" [value]="e.empresaId">
+            {{e.nombreEmpresa}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-card-content>
+    
+    <mat-card-actions>
+      <button mat-raised-button color="warn" (click)="guardar()"><mat-icon>save</mat-icon>Guardar</button>  
+      <button mat-raised-button color="warn" routerLink="/proyectosadmin"><mat-icon>close</mat-icon>Cancelar</button>
+    </mat-card-actions>
+</mat-card>
+
