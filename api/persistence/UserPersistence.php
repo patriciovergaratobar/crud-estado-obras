@@ -76,7 +76,7 @@ class UserPersistence {
     function getAllUser() {
 
         $link = getConnect();
-        $query = "SELECT ". basicColumUser() ." FROM user";
+        $query = "SELECT * FROM user as u inner join empresas as em on em.empresaId = u.empresaId";
         $result = $link->query($query);
         while($row = mysqli_fetch_assoc($result)){
 

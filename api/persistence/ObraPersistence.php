@@ -30,7 +30,7 @@ class ObraPersistence {
     function getAll() {
 
         $link = getConnect();
-        $query = "SELECT * FROM obras";
+        $query = "SELECT * FROM obras as o inner join proyectos as pro on pro.proyectosId = o.proyectosId";
         $result = $link->query($query);
         while($row = mysqli_fetch_assoc($result)){
 
@@ -45,7 +45,7 @@ class ObraPersistence {
 
         $link = getConnect();
         $queryInsert = "INSERT INTO obras (nombreObra, direccion, fechaInicio, proyectosId) ".
-                    " VALUES ('".$data['nombreObra']."', '".$data['direccion']."','".$data['fechaInicio']."', '".$data['proyectosId']."') ";
+                    " VALUES ('".$data['nombreObra']."', '".$data['direccion']."','".date_format(date_create($data['fechaInicio']),"Y-m-d")."', '".$data['proyectosId']."') ";
         $result = $link->query($queryInsert);
         $link->close();
         return $result ;
@@ -58,7 +58,7 @@ class ObraPersistence {
         "nombreObra= '".$data['nombreObra']."', ".
         "direccion= '".$data['direccion']."', ".
         "proyectosId= '".$data['proyectosId']."', ".
-        "fechaInicio = '".$data['fechaInicio']."' ". 
+        "fechaInicio = '".date_format(date_create($data['fechaInicio']),"Y-m-d")."' ". 
         " WHERE obraId = '".$data['obraId']."' ";
         $result = $link->query($queryUpdate);
         $link->close();

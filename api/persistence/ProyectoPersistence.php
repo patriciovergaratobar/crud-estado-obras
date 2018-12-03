@@ -30,7 +30,7 @@ class ProyectoPersistence {
     function getAll() {
 
         $link = getConnect();
-        $query = "SELECT * FROM proyectos";
+        $query = "SELECT * FROM proyectos as pro inner join empresas as em on em.empresaId = pro.empresaId";
         $result = $link->query($query);
         while($row = mysqli_fetch_assoc($result)){
 
