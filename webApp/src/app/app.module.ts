@@ -72,6 +72,7 @@ import { CrearArchivoComponent } from './formularios/crear-archivo/crear-archivo
 import { EditarArchivoComponent } from './formularios/editar-archivo/editar-archivo.component';
 import { ProyectoTablaComponent } from './proyecto-tabla/proyecto-tabla.component';
 import { ObrasTablaComponent } from './obras-tabla/obras-tabla.component';
+import { EstadosTablaComponent } from './estados-tabla/estados-tabla.component';
 
 @NgModule({
   declarations: [
@@ -103,7 +104,8 @@ import { ObrasTablaComponent } from './obras-tabla/obras-tabla.component';
     CrearArchivoComponent,
     EditarArchivoComponent,
     ProyectoTablaComponent,
-    ObrasTablaComponent
+    ObrasTablaComponent,
+    EstadosTablaComponent
   ],
   entryComponents: [
     DialogoSimpleComponent
