@@ -18,6 +18,8 @@ import { CrearProyectoComponent } from './formularios/crear-proyecto/crear-proye
 import { EditarProyectoComponent } from './formularios/editar-proyecto/editar-proyecto.component';
 import { CrearObraComponent } from './formularios/crear-obra/crear-obra.component';
 import { EditarObraComponent } from './formularios/editar-obra/editar-obra.component';
+import { CrearEstadoComponent } from './formularios/crear-estado/crear-estado.component';
+import { EditarEstadoComponent } from './formularios/editar-estado/editar-estado.component';
 
 const routes: Routes = [ {
   path:'',
@@ -73,6 +75,12 @@ const routes: Routes = [ {
 },{
   path:'estadosadmin',
   component:EstadosObrasAdminComponent
+},{
+  path:'crear-estadosadmin',
+  component: CrearEstadoComponent
+},{
+  path:'editar-estadosadmin/:id',
+  component:EditarEstadoComponent
 }];
 
 @NgModule({
