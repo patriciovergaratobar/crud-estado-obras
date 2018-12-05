@@ -1,3 +1,10 @@
-<p>
-  estados-obras-admin works!
-</p>
+
+<h2 mat-dialog-title>Estados de Obras</h2>
+
+<mat-card>
+    <button mat-raised-button routerLink="/crear-estadosadmin" color="warn"><mat-icon>add</mat-icon>Crear</button>  
+    <mat-form-field class="mat-form-field-login">
+        <input matInput placeholder="Buscar..." (keydown.enter)="filter()" [(ngModel)]="filterText">
+    </mat-form-field>
+</mat-card>
+<app-estados-tabla #tabla></app-estados-tabla>

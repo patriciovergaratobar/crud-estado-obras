@@ -1,0 +1,24 @@
+.full-width-table {
+    width: 100%;
+  }
+  
+  .mat-form-field{
+    padding-right: 10px;
+  }
+  
+  .head-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .head-container > * {
+    width: 100%;
+  }
+  .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+    padding-bottom: 1.25em;
+    margin-left: 5px;
+  }
+  .mat-card-content>:last-child:not(.mat-card-footer), .mat-card>:last-child:not(.mat-card-footer) {
+    margin-bottom: 0;
+    margin-left: 10px;
+  }

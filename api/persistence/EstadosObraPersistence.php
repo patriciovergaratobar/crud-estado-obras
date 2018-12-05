@@ -30,7 +30,7 @@ class EstadosObraPersistence{
     function getAll() {
 
         $link = getConnect();
-        $query = "SELECT * FROM estadosObras";
+        $query = "SELECT * FROM estadosObras as e inner join obras as o on e.obraId = o.obraId";
         $result = $link->query($query);
         while($row = mysqli_fetch_assoc($result)){
 
