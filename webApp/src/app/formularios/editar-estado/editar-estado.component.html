@@ -1,3 +1,51 @@
-<p>
-  editar-estado works!
-</p>
+
+<mat-toolbar color="primary">Estados de Obras</mat-toolbar>
+
+<mat-card>
+
+    <mat-card-title class="element-center">
+        Editar Estados de Obras
+  </mat-card-title>  
+   
+    <mat-card-content>
+        <mat-form-field class="mat-form-field-login">
+            <input matInput placeholder="Titulo" [(ngModel)]="estado.titulo" required>
+        </mat-form-field>
+    </mat-card-content>
+
+    <mat-card-content>
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Fecha Estado" [(ngModel)]="fechaSeleccionada">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      
+      <mat-form-field class="mat-form-field-login">
+        <input matInput placeholder="Comentario" [(ngModel)]="estado.comentario" required>  
+      </mat-form-field>
+    </mat-card-content>
+
+    <mat-card-content>
+     
+      <mat-form-field class="mat-form-field-login">
+        <input matInput placeholder="Empresa" [(ngModel)]="nombreEmpresa" disabled>
+      </mat-form-field>
+      <mat-form-field class="mat-form-field-login">
+        <input matInput placeholder="Proyecto" [(ngModel)]="proyectoSeleccionada" disabled>
+      </mat-form-field>
+    
+    </mat-card-content>
+
+    <mat-card-content>
+        <mat-form-field class="mat-form-field-login">
+            <input matInput placeholder="Obras" [(ngModel)]="estado.nombreObra" disabled>
+        </mat-form-field>
+</mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="guardar()"><mat-icon>save</mat-icon>Guardar</button>  
+      <button mat-raised-button color="accent" routerLink="/estadosadmin"><mat-icon>close</mat-icon>Cancelar</button>
+    </mat-card-actions>
+</mat-card>
+
