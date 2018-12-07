@@ -5,7 +5,7 @@ class EstadosObraPersistence{
     function getById($id) {
 
         $link = getConnect();
-        $query = "SELECT * FROM estadosObras WHERE estadosObrasId =  '". $id ."' limit 1";
+        $query = "SELECT * FROM estadosObras  as e inner join obras as o on e.obraId = o.obraId WHERE estadosObrasId =  '". $id ."' limit 1";
         $result = $link->query($query);
         while ($row = mysqli_fetch_assoc($result)) { $response = $row; }
         $result->close();
@@ -45,7 +45,7 @@ class EstadosObraPersistence{
 
         $link = getConnect();
         $queryInsert = "INSERT INTO estadosObras ( titulo, fecha, comentario, obraId)  ".
-                    " VALUES ('".$data['titulo']."', '".$data['fecha']."','".$data['comentario']."', '".$data['obraId']."') ";
+                    " VALUES ('".$data['titulo']."', '".date_format(date_create($data['fecha']),"Y-m-d")."','".$data['comentario']."', '".$data['obraId']."') ";
         $result = $link->query($queryInsert);
         $link->close();
         return $result ;
@@ -56,7 +56,7 @@ class EstadosObraPersistence{
         $link = getConnect();
         $queryUpdate = "UPDATE estadosObras SET ".
         "titulo= '".$data['titulo']."', ".
-        "fecha= '".$data['fecha']."', ".
+        "fecha= '".date_format(date_create($data['fecha']),"Y-m-d")."', ".
         "comentario= '".$data['comentario']."', ".
         "obraId = '".$data['obraId']."' ". 
         " WHERE estadosObrasId = '".$data['estadosObrasId']."' ";
