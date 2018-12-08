@@ -1,8 +1,7 @@
 
-<h2   mat-dialog-title>Empresas</h2>
-
+<mat-toolbar color="primary">Empresas</mat-toolbar>
 <mat-card>
-    <button mat-raised-button routerLink="/crear-empresasadmin" color="warn"><mat-icon>add</mat-icon>Crear</button>  
+    <button mat-raised-button routerLink="/crear-empresasadmin"><mat-icon>add</mat-icon>Crear</button>  
     <mat-form-field class="mat-form-field-login">
         <input matInput placeholder="Buscar..." (keydown.enter)="filter()" [(ngModel)]="filterText">
     </mat-form-field>
