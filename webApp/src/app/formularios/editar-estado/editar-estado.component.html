@@ -41,11 +41,46 @@
         <mat-form-field class="mat-form-field-login">
             <input matInput placeholder="Obras" [(ngModel)]="estado.nombreObra" disabled>
         </mat-form-field>
-</mat-card-content>
+    </mat-card-content>
+
+    
+
+    <mat-card-content>
+            <button mat-raised-button color="primary" (click)="fileInput.click()">
+                <mat-icon>photo</mat-icon>
+              </button> {{ fileSeleccionado }}
+              
+     
+        <mat-form-field class="mat-form-field-login">
+            <input matInput placeholder="Descripción" [(ngModel)]="descripcionFile" >  
+        </mat-form-field>  
+        
+        <button mat-raised-button color="primary" (click)="uploadFoto()"><mat-icon>add</mat-icon></button>    
+          
+    </mat-card-content>
+
+    <mat-list>
+        <mat-divider></mat-divider>
+      <mat-list-item *ngFor="let foto of fotos">
+        <img width="30px" src='data:image/jpeg;base64,{{ foto.archivos }}' /> 
+        {{ foto.comentario }} 
+        <button mat-button matTooltip="Eliminar el dato" (click)="deleteFoto(foto)" >
+        <mat-icon>delete_sweep</mat-icon></button> 
+      </mat-list-item>
+
+
+    </mat-list>
+  
+    
+    <input hidden id="fileFoto" type="file" (change)="changeEvent($event)" #fileInput>
+
 
     <mat-card-actions>
+      
       <button mat-raised-button color="primary" (click)="guardar()"><mat-icon>save</mat-icon>Guardar</button>  
       <button mat-raised-button color="accent" routerLink="/estadosadmin"><mat-icon>close</mat-icon>Cancelar</button>
+    
+    
     </mat-card-actions>
 </mat-card>
 
