@@ -4,6 +4,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import {SesionService} from 'src/app/services/sesion.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Empresa } from '../model/empresa';
 
 @Component({
   selector: 'app-menu-principal',
@@ -19,6 +20,8 @@ export class MenuPrincipalComponent implements OnInit  {
 
   public isHome;
 
+  public empresa: Empresa;
+
   public isloging = false;
 
   public isAdmin = false;
@@ -29,6 +32,7 @@ export class MenuPrincipalComponent implements OnInit  {
 
   ngOnInit() {
 
+    this.empresa = {} as Empresa;
     this.validarPath(); 
     let token = localStorage.getItem('sess');
     
@@ -39,6 +43,9 @@ export class MenuPrincipalComponent implements OnInit  {
       if (admin == 'ADMIN') {
         this.isAdmin = true;
       }
+
+      this.empresa = JSON.parse(localStorage.getItem('empresa')) as Empresa;
+
     }
   }
 
