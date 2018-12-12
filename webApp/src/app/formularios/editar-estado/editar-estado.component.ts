@@ -7,6 +7,7 @@ import { ObraServiceService } from 'src/app/services/obra-service.service';
 import { ProyectoServiceService } from 'src/app/services/proyecto-service.service';
 import { EstadosObrasServiceService } from 'src/app/services/estados-obras-service.service';
 import { ArchivoServiceService } from 'src/app/services/archivo-service.service';
+import swal from'sweetalert2';
 
 import { Archivo } from 'src/app/model/archivo';
 import { Obra } from 'src/app/model/obra';
@@ -272,6 +273,15 @@ export class EditarEstadoComponent implements OnInit {
   deleteFoto(foto: Archivo) {
 
     this.fotoService.delete(foto.fotoid).subscribe(resp => this.loadFotosByEstado());
+  }
+
+  openViewImg(foto: Archivo) {
+
+    console.log(foto);
+    swal({
+      html: "<img style='max-width: 450px;' src='data:image/jpeg;base64," + foto.archivos +"' /> ",
+      showCloseButton: true
+    });
   }
 
 }

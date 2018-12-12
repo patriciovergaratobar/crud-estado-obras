@@ -62,7 +62,7 @@
     <mat-list>
         <mat-divider></mat-divider>
       <mat-list-item *ngFor="let foto of fotos">
-        <img width="30px" src='data:image/jpeg;base64,{{ foto.archivos }}' /> 
+        <img width="30px" (click)="openViewImg(foto)" src='data:image/jpeg;base64,{{ foto.archivos }}' /> 
         {{ foto.comentario }} 
         <button mat-button matTooltip="Eliminar el dato" (click)="deleteFoto(foto)" >
         <mat-icon>delete_sweep</mat-icon></button> 
