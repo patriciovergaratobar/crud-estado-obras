@@ -37,4 +37,11 @@ export class SesionService {
         httpOptions
       );
   }
+
+
+  getEmpresaById(id) {
+
+    let url: String = 'api/service.php/empresa';
+    return this.http.get(url.toString().concat("/id/").concat(id.toString()), this.httpOptionsDefault );
+  }
 }

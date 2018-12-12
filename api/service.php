@@ -149,18 +149,9 @@ $app->get('/empresa', function (Request $request, Response $response, array $arg
 
 $app->get('/empresa/id/{id}', function (Request $request, Response $response, array $args) {
 
-    $token_header = $request->getHeaderLine('authorization-x');
-    if (UserController::validateToken($token_header)) {
-
-        $id = $args['id'];
-        $response = $response->withJson(EmpresaController::getById($id));
-        return $response;
-    } else {
-
-        return $response->withStatus(203)
-                        ->withHeader('Content-Type', 'text/html')
-                        ->write('203 Non-Authoritative Information. (authorization-x)');
-    }
+    $id = $args['id'];
+    $response = $response->withJson(EmpresaController::getById($id));
+    return $response;
 });
 
 $app->post('/empresa/create', 

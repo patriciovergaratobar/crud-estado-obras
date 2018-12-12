@@ -1,8 +1,10 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import {SesionService} from 'src/app/services/sesion.service';
+import { EmpresaServiceService } from 'src/app/services/empresa-service.service'
 import { MatDialog } from '@angular/material';
 import { DialogoSimpleComponent } from 'src/app/dialogo-simple/dialogo-simple.component';
+import { Usuario } from '../model/usuario';
 
 @Component({
   selector: 'app-login',
@@ -74,7 +76,15 @@ export class LoginComponent implements OnInit {
           localStorage.setItem("isAdmin", 'NO');
         }
         localStorage.setItem("user", JSON.stringify(response['user']));
-        window.location.href = "home";
+
+        let usurModel = user as Usuario;
+        console.log(usurModel);
+
+        this.sesionService.getEmpresaById(usurModel.empresaId).subscribe(res => {
+
+          localStorage.setItem("empresa", JSON.stringify(res));
+          window.location.href = "home";
+        });
       }
     });
   }
