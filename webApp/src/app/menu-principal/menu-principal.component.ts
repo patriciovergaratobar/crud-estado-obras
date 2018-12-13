@@ -97,8 +97,8 @@ export class MenuPrincipalComponent implements OnInit  {
       if (call.url == undefined) {
         return false;
       }
-      console.log(call.url == '/home');
-      if (call.url == '/home') {
+      console.log(call.url );
+      if (call.url == '/home' || call.url.indexOf('/home-proyecto')  >= 0) {
         this.loadDataHome();
         this.isHome = true;
       } else {
