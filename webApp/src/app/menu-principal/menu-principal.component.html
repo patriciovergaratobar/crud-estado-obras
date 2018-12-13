@@ -5,10 +5,10 @@
       [opened]="!(isHandset$ | async) && isloging && isHome">
       <mat-toolbar *ngIf="empresa.logo == ''">ASINCOP</mat-toolbar>
     <mat-toolbar *ngIf="empresa.logo != ''"><img width="100px" src="{{ empresa.logo }}"></mat-toolbar>
-    <mat-nav-list>
-      <a mat-list-item href="#">Link 1</a>
-      <a mat-list-item href="#">Link 2</a>
-      <a mat-list-item href="#">Link 3</a>
+
+    <mat-nav-list >
+      <a *ngFor="let p of proyectos" mat-list-item >{{p.nombreProyecto}}</a>
+ 
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

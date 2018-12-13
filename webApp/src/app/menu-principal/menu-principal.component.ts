@@ -4,7 +4,18 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import {SesionService} from 'src/app/services/sesion.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Empresa } from '../model/empresa';
+import {EmpresaServiceService} from 'src/app/services/empresa-service.service';
+import { ObraServiceService } from 'src/app/services/obra-service.service';
+import { ProyectoServiceService } from 'src/app/services/proyecto-service.service';
+import { EstadosObrasServiceService } from 'src/app/services/estados-obras-service.service';
+import { ArchivoServiceService } from 'src/app/services/archivo-service.service';
+import swal from'sweetalert2';
+
+import { Archivo } from 'src/app/model/archivo';
+import { Obra } from 'src/app/model/obra';
+import { Empresa } from 'src/app/model/empresa';
+import { Proyecto } from 'src/app/model/proyecto';
+import { Estado } from 'src/app/model/estado';
 
 @Component({
   selector: 'app-menu-principal',
@@ -26,9 +37,17 @@ export class MenuPrincipalComponent implements OnInit  {
 
   public isAdmin = false;
 
-  constructor(private breakpointObserver: BreakpointObserver, private router: Router, private sesionService: SesionService) {
-    
-  }
+  public proyectos: Array<Proyecto>;
+  public obras: Array<Obra>;
+  public estados: Array<Estado>;
+
+  constructor(private breakpointObserver: BreakpointObserver,
+    private router: Router,
+    private sesionService: SesionService,
+    private empresaService: EmpresaServiceService,
+    private obrasService: ObraServiceService,
+    private proyectosService: ProyectoServiceService,
+    private estadosServices: EstadosObrasServiceService) {}
 
   ngOnInit() {
 
@@ -49,6 +68,26 @@ export class MenuPrincipalComponent implements OnInit  {
     }
   }
 
+  loadDataHome() {
+
+    this.proyectos = [];
+    this.obras = [];
+    this.estados = [];
+
+    this.proyectosService.getByEmpresaId(this.empresa.empresaId).subscribe( resp => this.proyectos = resp as Array<Proyecto>);
+
+  }
+
+  loadObrasByProyecto(id) {
+
+    this.obrasService.getByProyectoId(id).subscribe( resp => this.obras = resp as Array<Obra>);
+  }
+
+  loadEstadosByObras(id) {
+
+    this.estadosServices.getByObraId(id).subscribe( resp => this.estados = resp as Array<Estado>);
+  }
+
   validarPath() {
 
     this.router.events.subscribe((call:any) => {
@@ -60,7 +99,7 @@ export class MenuPrincipalComponent implements OnInit  {
       }
       console.log(call.url == '/home');
       if (call.url == '/home') {
-        
+        this.loadDataHome();
         this.isHome = true;
       } else {
         this.isHome = false;
