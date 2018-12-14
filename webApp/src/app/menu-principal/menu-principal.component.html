@@ -7,7 +7,7 @@
     <mat-toolbar *ngIf="empresa.logo != ''"><img width="100px" src="{{ empresa.logo }}"></mat-toolbar>
 
     <mat-nav-list >
-      <a *ngFor="let p of proyectos" mat-list-item [routerLink]="['/home-proyecto', p.proyectosId]" >{{p.nombreProyecto}}</a>
+      <a *ngFor="let p of proyectos" mat-list-item href="/home-proyecto/{{ p.proyectosId}}"  >{{p.nombreProyecto}}</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
