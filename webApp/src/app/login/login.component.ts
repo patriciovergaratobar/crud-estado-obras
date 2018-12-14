@@ -20,17 +20,14 @@ export class LoginComponent implements OnInit {
   constructor( private sesionService: SesionService, private dialog: MatDialog) { }
 
   ngOnInit() { 
-
-    console.log("dd");
+    /*
     if (localStorage.getItem("sess") != undefined &&
      localStorage.getItem("sess") != null && localStorage.getItem("sess") != "") {
 
       window.location.href = "home";
-    } else {
-  
-      localStorage.setItem("sess","");
-    }
+    } */
   }
+
 
   /**
    * Funcion que realiza el login.

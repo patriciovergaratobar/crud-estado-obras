@@ -52,11 +52,12 @@ export class MenuPrincipalComponent implements OnInit  {
   ngOnInit() {
 
     this.empresa = {} as Empresa;
-    this.validarPath(); 
+     
     let token = localStorage.getItem('sess');
     
     if (token != undefined && token != null && token != "" && token.length > 5) {
 
+      this.validarPath();
       this.isloging = true;
       let admin = localStorage.getItem('isAdmin');
       if (admin == 'ADMIN') {
@@ -65,9 +66,6 @@ export class MenuPrincipalComponent implements OnInit  {
 
       this.empresa = JSON.parse(localStorage.getItem('empresa')) as Empresa;
 
-    } else {
-   
-      localStorage.setItem("sess","");
     }
   }
 
@@ -99,7 +97,11 @@ export class MenuPrincipalComponent implements OnInit  {
       
       var token = localStorage.getItem('sess');
     
-      if (token == undefined || token == null || token == "" && call.url == '/login') {
+      if(call.url == '/login') {
+        return false;
+      }
+
+      if (token == undefined || token == null || token == "" && call.url != '/login') {
 
         window.location.href = "login";
         return false;
