@@ -20,13 +20,15 @@ export class ObraServiceService {
   constructor(private http: HttpClient) { 
 
     var token = localStorage.getItem('sess');
-    console.log(token);
-    this.httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'authorization-x': token.toString()
-      })
-    };
+    if (token != undefined && token != null) {
+    
+      this.httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type':  'application/json',
+          'authorization-x': token.toString()
+        })
+      };
+    }
   }
 
   getAll() {

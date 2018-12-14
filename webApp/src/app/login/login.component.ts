@@ -1,7 +1,6 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import {SesionService} from 'src/app/services/sesion.service';
-import { EmpresaServiceService } from 'src/app/services/empresa-service.service'
 import { MatDialog } from '@angular/material';
 import { DialogoSimpleComponent } from 'src/app/dialogo-simple/dialogo-simple.component';
 import { Usuario } from '../model/usuario';
@@ -22,13 +21,14 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() { 
 
-    localStorage.getItem("sess");
-
+    console.log("dd");
     if (localStorage.getItem("sess") != undefined &&
-     localStorage.getItem("sess") != null &&
-     localStorage.getItem("sess").toString() != "" ) {
+     localStorage.getItem("sess") != null && localStorage.getItem("sess") != "") {
 
       window.location.href = "home";
+    } else {
+  
+      localStorage.setItem("sess","");
     }
   }
 

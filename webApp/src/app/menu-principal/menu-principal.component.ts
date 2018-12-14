@@ -65,6 +65,9 @@ export class MenuPrincipalComponent implements OnInit  {
 
       this.empresa = JSON.parse(localStorage.getItem('empresa')) as Empresa;
 
+    } else {
+   
+      localStorage.setItem("sess","");
     }
   }
 
@@ -93,6 +96,15 @@ export class MenuPrincipalComponent implements OnInit  {
     this.router.events.subscribe((call:any) => {
     
       console.log(call.url);
+      
+      var token = localStorage.getItem('sess');
+    
+      if (token == undefined || token == null || token == "" && call.url == '/login') {
+
+        window.location.href = "login";
+        return false;
+      }
+      
 
       if (call.url == undefined) {
         return false;
