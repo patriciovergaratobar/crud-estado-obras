@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Estado } from 'src/app/model/estado';
+import { Comentario } from 'src/app/model/comentario';
 
 @Injectable({
   providedIn: 'root'
@@ -60,6 +61,16 @@ export class EstadosObrasServiceService {
   delete(id) {
 
     return this.http.delete(this.BASE_URL.toString().concat('/delete/').concat(id.toString()), this.httpOptions);
+  }
+
+  createComentario(comentario: Comentario) {
+
+    return this.http.post(this.BASE_URL.toString().concat("/createComentario"),JSON.stringify(comentario), this.httpOptions);
+  }
+
+  getComentariosById(id) {
+
+    return this.http.get(this.BASE_URL.toString().concat("/comentario/id/").concat(id.toString()), this.httpOptions );
   }
 
 }
