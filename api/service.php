@@ -466,6 +466,37 @@ function (Request $request, Response $response) {
     }
 });
 
+$app->post('/estados/createComentario', 
+function (Request $request, Response $response) {
+
+    $token_header = $request->getHeaderLine('authorization-x');
+    if (UserController::validateToken($token_header)) {
+        $data = $request->getParsedBody();
+        $response = $response->withJson(EstadosObraController::createComentario($data));
+        return $response;
+    } else {
+        return $response->withStatus(203)
+                        ->withHeader('Content-Type', 'text/html')
+                        ->write('203 Non-Authoritative Information. (authorization-x)');
+    }
+});
+
+$app->get('/estados/comentario/id/{id}', function (Request $request, Response $response, array $args) {
+
+    $token_header = $request->getHeaderLine('authorization-x');
+    if (UserController::validateToken($token_header)) {
+
+        $id = $args['id'];
+        $response = $response->withJson(EstadosObraController::getComentariosById($id));
+        return $response;
+    } else {
+
+        return $response->withStatus(203)
+                        ->withHeader('Content-Type', 'text/html')
+                        ->write('203 Non-Authoritative Information. (authorization-x)');
+    }
+});
+
 $app->put('/estados/update', 
 function (Request $request, Response $response) {
 

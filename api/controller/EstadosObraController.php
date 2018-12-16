@@ -17,6 +17,22 @@ class EstadosObraController {
         return EstadosObraPersistence::getAll();
     }
 
+    function getComentariosById($id) {
+
+        return EstadosObraPersistence::getComentariosById($id);
+    }
+
+    function createComentario($data) {
+
+        if ($data['comentario'] == null || $data['estadoId'] == null) {
+
+            return array('status' => 'false', 'action' => 'create', 'message' => 'Null');
+        }
+        
+        $isOk = EstadosObraPersistence::createComentario($data);
+        return array('status' => $isOk, 'action' => 'create', 'message' => 'created');
+    }
+
     function create($data) {
 
         if ($data['titulo'] == null || $data['fecha'] == null || $data['comentario'] == null || $data['obraId'] == null ) {

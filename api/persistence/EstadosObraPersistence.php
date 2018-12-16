@@ -13,6 +13,27 @@ class EstadosObraPersistence{
         return $response;
     }
 
+    function getComentariosById($id) {
+
+        $link = getConnect();
+        $query = "SELECT * FROM comentariosEstados WHERE estadoId =  '". $id ."'";
+        $result = $link->query($query);
+        while ($row = mysqli_fetch_assoc($result)) { $response = $row; }
+        $result->close();
+        $link->close();
+        return $response;
+    }
+
+    function createComentario($data) {
+
+        $link = getConnect();
+        $queryInsert = "INSERT INTO comentariosEstados ( comentario, estadoId)  ".
+                    " VALUES ('".$data['comentario']."', '".$data['estadoId']."') ";
+        $result = $link->query($queryInsert);
+        $link->close();
+        return $result ;
+    }
+
     function getAllByObraId($id) {
 
         $link = getConnect();
