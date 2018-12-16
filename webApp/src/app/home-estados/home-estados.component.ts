@@ -13,6 +13,7 @@ import { Empresa } from 'src/app/model/empresa';
 import { Proyecto } from 'src/app/model/proyecto';
 import { Estado } from 'src/app/model/estado';
 import { Comentario } from '../model/comentario';
+import { Usuario } from '../model/usuario';
 
 
 @Component({
@@ -107,9 +108,12 @@ export class HomeEstadosComponent implements OnInit {
       return false;
     }
 
+    let usuario = JSON.parse(localStorage.getItem('user')) as Usuario;
+
     var newComentario = {
       comentario: comentario.value,
-      estadoId: estadoId
+      estadoId: estadoId,
+      rutUser: usuario.rut
     } as Comentario;
 
     this.estadosService.createComentario(newComentario).subscribe(resp => {
