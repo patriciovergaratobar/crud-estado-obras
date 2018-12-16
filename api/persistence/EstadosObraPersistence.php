@@ -16,7 +16,7 @@ class EstadosObraPersistence{
     function getComentariosById($id) {
 
         $link = getConnect();
-        $query = "SELECT * FROM comentariosEstados WHERE estadoId =  '". $id ."'";
+        $query = "SELECT c.comentariosEstadosId, c.comentario, c.estadoId, c.rutUser, u.nombre, u.apellido  FROM comentariosEstados as c inner join user as u on u.rut = c.rutUser WHERE c.estadoId =  '". $id ."'";
         $result = $link->query($query);
         while($row = mysqli_fetch_assoc($result)){
 
@@ -30,8 +30,8 @@ class EstadosObraPersistence{
     function createComentario($data) {
 
         $link = getConnect();
-        $queryInsert = "INSERT INTO comentariosEstados ( comentario, estadoId)  ".
-                    " VALUES ('".$data['comentario']."', '".$data['estadoId']."') ";
+        $queryInsert = "INSERT INTO comentariosEstados ( comentario, estadoId, rutUser)  ".
+                    " VALUES ('".$data['comentario']."', '".$data['estadoId']."', '".$data['rutUser']."') ";
         $result = $link->query($queryInsert);
         $link->close();
         return $result ;
