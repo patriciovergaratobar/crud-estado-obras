@@ -1,3 +1,5 @@
+import { Archivo } from "./archivo";
+
 export interface Estado {
 
     estadosObrasId: number;
@@ -6,4 +8,6 @@ export interface Estado {
     fecha: Date;
     obraId: number;
     nombreObra: string;
+
+    fotos: Array<Archivo>;
 }

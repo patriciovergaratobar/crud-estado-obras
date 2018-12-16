@@ -74,6 +74,7 @@ import { ProyectoTablaComponent } from './proyecto-tabla/proyecto-tabla.componen
 import { ObrasTablaComponent } from './obras-tabla/obras-tabla.component';
 import { EstadosTablaComponent } from './estados-tabla/estados-tabla.component';
 import { HomeProyectosComponent } from './home-proyectos/home-proyectos.component';
+import { HomeEstadosComponent } from './home-estados/home-estados.component';
 
 @NgModule({
   declarations: [
@@ -107,7 +108,8 @@ import { HomeProyectosComponent } from './home-proyectos/home-proyectos.componen
     ProyectoTablaComponent,
     ObrasTablaComponent,
     EstadosTablaComponent,
-    HomeProyectosComponent
+    HomeProyectosComponent,
+    HomeEstadosComponent
   ],
   entryComponents: [
     DialogoSimpleComponent

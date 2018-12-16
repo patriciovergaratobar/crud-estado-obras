@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
 import { HomeProyectosComponent } from './home-proyectos/home-proyectos.component';
+import { HomeEstadosComponent } from './home-estados/home-estados.component';
 import { ListasEstadoObrasComponent } from './listas-estado-obras/listas-estado-obras.component';
 import { EmpresasAdminComponent } from './empresas-admin/empresas-admin.component';
 import { ProyectosAdminComponent } from './proyectos-admin/proyectos-admin.component';
@@ -35,6 +36,9 @@ const routes: Routes = [ {
 },{
   path:'home-proyecto/:id',
   component:HomeProyectosComponent
+},{
+  path:'home-estados/:id',
+  component:HomeEstadosComponent
 },{
   path:'estados',
   component:ListasEstadoObrasComponent

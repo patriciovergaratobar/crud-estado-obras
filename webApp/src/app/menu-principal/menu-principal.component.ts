@@ -92,12 +92,11 @@ export class MenuPrincipalComponent implements OnInit  {
   validarPath() {
 
     this.router.events.subscribe((call:any) => {
-    
-      console.log(call.url);
-      
+          
       var token = localStorage.getItem('sess');
     
       if(call.url == '/login') {
+
         return false;
       }
 
@@ -111,14 +110,15 @@ export class MenuPrincipalComponent implements OnInit  {
       if (call.url == undefined) {
         return false;
       }
-      console.log(call.url );
-      if (call.url == '/home' || call.url.indexOf('/home-proyecto')  >= 0) {
+      
+      if (call.url == '/home' || call.url.indexOf('/home-proyecto')  >= 0 || call.url.indexOf('/home-estados')  >= 0) {
+
         this.loadDataHome();
         this.isHome = true;
       } else {
+
         this.isHome = false;
       }
-      
     });
   }
 

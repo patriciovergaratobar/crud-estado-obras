@@ -1,0 +1,52 @@
+<mat-toolbar color="primary">Estados de la Obra {{obra.nombreObra}}</mat-toolbar>
+<div class="container-home">
+   <mat-card class="card" *ngIf="estadosObra == null || estadosObra.length == 0" >
+      <mat-card-header>
+         <mat-card-title>No hay estados registrados en el sistema.</mat-card-title>
+      </mat-card-header>
+   </mat-card>
+   <mat-card class="card" *ngFor="let e of estadosObra" >
+      <mat-card-header>
+         <!--div mat-card-avatar class="header-image"></div-->
+         <mat-card-title>{{ e.titulo }}</mat-card-title>
+         <mat-card-subtitle>Fecha del estado: {{ e.fecha }}</mat-card-subtitle>
+      </mat-card-header>
+      <!--img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"-->
+      <mat-card-content>
+         <p>
+            {{ e.comentario }}
+         </p>
+      </mat-card-content>
+      <mat-expansion-panel >
+         <mat-expansion-panel-header>
+            <mat-panel-title>
+               Fotos
+            </mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+         </mat-expansion-panel-header>
+         <mat-list>
+            <mat-list-item *ngFor="let foto of e.fotos">
+               <img (click)="clickOpenModalImg('data:image/jpeg;base64,'+foto.archivos)" style="width:30px" src='data:image/jpeg;base64,{{ foto.archivos }}' /> 
+               {{ foto.comentario }} 
+            </mat-list-item>
+         </mat-list>
+      </mat-expansion-panel>
+      <mat-card-actions>
+         <a mat-button  color="primary"  href="http://www.asin360.cl/360/{{ e.obraId }}/{{ e.estadosObrasId }}" target="_blank" >Tur 360</a>
+         <!--a mat-button href="http://www.asin360.cl/propiedades/Santa_Olga_OPR1/" target="_blank" >Tur 360</a-->
+      </mat-card-actions>
+   </mat-card>
+</div>
+<button id="retrocederBt" color="primary" matTooltip="Regresar a la pantalla de las obras" [routerLink]="['/home-proyecto', proyecto.proyectosId]" mat-fab>
+   <mat-icon aria-label="Example icon-button with a heart icon">subdirectory_arrow_left</mat-icon>
+</button>
+<!-- The Modal -->
+<div *ngIf="displayModal == 'block'" id="myModal" class="modal">
+   <span class="close">&times;</span>
+   <img class="modal-content" id="img01" src="{{modalImgSrc}}">
+   <div id="caption"></div>
+</div>
+<button id="closeModalBt" *ngIf="displayModal == 'block'"  color="primary" (click)="clickcloseModalImg()" mat-fab>
+<mat-icon aria-label="Example icon-button with a heart icon">close</mat-icon>
+</button>
