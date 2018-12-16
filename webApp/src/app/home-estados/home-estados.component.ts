@@ -12,6 +12,7 @@ import { Obra } from 'src/app/model/obra';
 import { Empresa } from 'src/app/model/empresa';
 import { Proyecto } from 'src/app/model/proyecto';
 import { Estado } from 'src/app/model/estado';
+import { Comentario } from '../model/comentario';
 
 
 @Component({
@@ -29,6 +30,10 @@ export class HomeEstadosComponent implements OnInit {
   private proyectoService: ProyectoServiceService,
   private estadosService: EstadosObrasServiceService,
   private fotoService: ArchivoServiceService) { }
+
+  public displayModal: String = "none";
+  public modalImgSrc: String = "";
+
 
   ngOnInit() {
 
@@ -54,23 +59,24 @@ export class HomeEstadosComponent implements OnInit {
         )
       );
 
+      this.estadosObra.forEach(
+        estado => this.estadosService.getComentariosById(estado.estadosObrasId)
+        .subscribe(
+          com => estado.comentariosEstado = com as Array<Comentario>
+        )
+      );
+    });
 
+    this.obrasService.getById(this.obra.obraId).subscribe(res => {
+        
+      this.obra = res as Obra;
       
-      this.obrasService.getById(this.obra.obraId).subscribe(res => {
-        
-        this.obra = res as Obra;
-        
-        this.proyectoService.getById(this.obra.proyectosId).subscribe(res => {
+      this.proyectoService.getById(this.obra.proyectosId).subscribe(res => {
 
-          this.proyecto = res as Proyecto;
-        });
+        this.proyecto = res as Proyecto;
       });
     });
   }
-
-
-  public displayModal: String = "none";
-  public modalImgSrc: String = "";
 
   clickOpenModalImg(srcImg) {
 
@@ -82,5 +88,35 @@ export class HomeEstadosComponent implements OnInit {
 
     this.displayModal = "none"
   }
-  
+
+  reLoadComentarios() {
+
+    this.estadosObra.forEach(
+      estado => this.estadosService.getComentariosById(estado.estadosObrasId)
+      .subscribe(
+        com => estado.comentariosEstado = com as Array<Comentario>
+      )
+    );
+  }
+
+  enviarComentario(comentario, estadoId) {
+
+    if (comentario.value == undefined || comentario.value == null || comentario.value.trim() == "") {
+
+      swal("Comentario no valido", "Debes escribir un comentario.", "warning");
+      return false;
+    }
+
+    var newComentario = {
+      comentario: comentario.value,
+      estadoId: estadoId
+    } as Comentario;
+
+    this.estadosService.createComentario(newComentario).subscribe(resp => {
+
+      comentario.value = "";
+      this.reLoadComentarios();
+    });
+
+  }
 }

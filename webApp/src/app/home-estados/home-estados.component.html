@@ -27,11 +27,39 @@
          </mat-expansion-panel-header>
          <mat-list>
             <mat-list-item *ngFor="let foto of e.fotos">
-               <img (click)="clickOpenModalImg('data:image/jpeg;base64,'+foto.archivos)" style="width:30px" src='data:image/jpeg;base64,{{ foto.archivos }}' /> 
-               {{ foto.comentario }} 
+               <img (click)="clickOpenModalImg('data:image/jpeg;base64,'+foto.archivos)" style="width:50px; margin-right: 1em;" src='data:image/jpeg;base64,{{ foto.archivos }}' /> 
+               <a (click)="clickOpenModalImg('data:image/jpeg;base64,'+foto.archivos)">{{ foto.comentario }}</a> 
             </mat-list-item>
          </mat-list>
       </mat-expansion-panel>
+      <mat-expansion-panel >
+          <mat-expansion-panel-header>
+             <mat-panel-title>
+                Comentarios
+             </mat-panel-title>
+             <mat-panel-description>
+             </mat-panel-description>
+          </mat-expansion-panel-header>
+          <mat-list>
+            <mat-list-item >
+              <b>Comentarios:</b>
+              <mat-divider></mat-divider>
+            </mat-list-item>
+            
+            <mat-list-item *ngFor="let c of e.comentariosEstado">
+                <p style=" font-size: 11px; background-color: #f3f3f3;">{{ c.comentario }}</p> 
+                <mat-divider></mat-divider>
+            </mat-list-item>
+
+            <mat-list-item >
+                <br>
+                <mat-form-field >
+                    <textarea matInput #textComentario placeholder="Escriba un comentario..."></textarea>
+                </mat-form-field>
+                <button mat-button matTooltip="Enviar" (click)="enviarComentario(textComentario, e.estadosObrasId)" ><mat-icon>near_me</mat-icon></button>
+            </mat-list-item> 
+          </mat-list>
+       </mat-expansion-panel>
       <mat-card-actions>
          <a mat-button  color="primary"  href="http://www.asin360.cl/360/{{ e.obraId }}/{{ e.estadosObrasId }}" target="_blank" >Tur 360</a>
          <!--a mat-button href="http://www.asin360.cl/propiedades/Santa_Olga_OPR1/" target="_blank" >Tur 360</a-->

@@ -1,4 +1,5 @@
 import { Archivo } from "./archivo";
+import { Comentario } from "./comentario";
 
 export interface Estado {
 
@@ -10,4 +11,6 @@ export interface Estado {
     nombreObra: string;
 
     fotos: Array<Archivo>;
+
+    comentariosEstado: Array<Comentario>;
 }
