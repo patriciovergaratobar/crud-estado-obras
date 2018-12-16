@@ -75,8 +75,14 @@ export class MenuPrincipalComponent implements OnInit  {
     this.obras = [];
     this.estados = [];
 
-    this.proyectosService.getByEmpresaId(this.empresa.empresaId).subscribe( resp => this.proyectos = resp as Array<Proyecto>);
+    
+    if (this.isAdmin) {
 
+      this.proyectosService.getAll().subscribe( resp => this.proyectos = resp as Array<Proyecto>);
+    } else {
+
+      this.proyectosService.getByEmpresaId(this.empresa.empresaId).subscribe( resp => this.proyectos = resp as Array<Proyecto>);
+    }
   }
 
   loadObrasByProyecto(id) {

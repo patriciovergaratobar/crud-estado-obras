@@ -16,7 +16,7 @@
     width: 100%;
 }
 .container-home {
-    width: 100%;
+
     min-height: 10vh;
     display: -webkit-box;
     display: -webkit-flex;
@@ -59,6 +59,10 @@ button#closeModalBt {
     right: 10px;
     bottom: 10px;
     z-index: 100;
+}
+
+mat-expansion-panel.mat-expansion-panel.ng-tns-c12-4.ng-star-inserted {
+    margin-top: 4px;
 }
 
 
