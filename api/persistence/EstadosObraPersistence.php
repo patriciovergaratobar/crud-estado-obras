@@ -18,7 +18,10 @@ class EstadosObraPersistence{
         $link = getConnect();
         $query = "SELECT * FROM comentariosEstados WHERE estadoId =  '". $id ."'";
         $result = $link->query($query);
-        while ($row = mysqli_fetch_assoc($result)) { $response = $row; }
+        while($row = mysqli_fetch_assoc($result)){
+
+           $response[] = $row; 
+        }
         $result->close();
         $link->close();
         return $response;
