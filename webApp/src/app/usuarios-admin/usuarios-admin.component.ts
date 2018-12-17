@@ -99,13 +99,26 @@ export class UsuariosAdminComponent implements OnInit {
       if (result.value) {
 
         this.usuarioService.delete(usuario.rut).subscribe(res => { 
-          swal(
-          'Eliminado!',
-          'El dato fue eliminado.',
-          'success');
-          window.location.href = "usuariosadmin";
 
-      });
+          if (res['status'] == false) {
+
+            swal(
+              'Cancelado',
+              'El dato no fue eliminado, por que tiene datos asociados. Te recomendamos que lo desactives para que mantengas todos los datos ingresados por el usuario.',
+              'error'
+            )
+
+          } else {
+
+            swal(
+              'Eliminado!',
+              'El dato fue eliminado.',
+              'success').then((result) => {
+                window.location.href = "usuariosadmin";
+              }); 
+          }
+
+        });
 
       } else if (result.dismiss === swal.DismissReason.cancel) {
         swal(
