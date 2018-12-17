@@ -101,11 +101,25 @@ export class EstadosObrasAdminComponent implements OnInit {
       if (result.value) {
 
         this.estadosObrasService.delete(estado.estadosObrasId).subscribe(res => { 
-          swal(
-          'Eliminado!',
-          'El dato fue eliminado.',
-          'success');
-          window.location.href = "estadosadmin";
+
+          if (res['status'] == false) {
+
+            swal(
+              'Cancelado',
+              'El dato no fue eliminado, por que tiene fotos asociadas.',
+              'error'
+            )
+
+          } else {
+
+            swal(
+              'Eliminado!',
+              'El dato fue eliminado.',
+              'success').then((result) => {
+                window.location.href = "estadosadmin";
+              });
+            
+          }
 
       });
 
