@@ -94,12 +94,25 @@ export class EmpresasAdminComponent implements OnInit {
       if (result.value) {
 
         this.empresaService.delete(empresa.empresaId).subscribe(res => { 
-          swal(
-          'Eliminado!',
-          'El dato fue eliminado.',
-          'success');
-          window.location.href = "empresasadmin";
 
+          if (res['status'] == false) {
+
+            swal(
+              'Cancelado',
+              'El dato no fue eliminado, por que tiene proyectos asociados.',
+              'error'
+            )
+
+          } else {
+
+            swal(
+              'Eliminado!',
+              'El dato fue eliminado.',
+              'success').then((result) => {
+                window.location.href = "empresasadmin";
+              });
+            
+          }
       });
 
       } else if (result.dismiss === swal.DismissReason.cancel) {
