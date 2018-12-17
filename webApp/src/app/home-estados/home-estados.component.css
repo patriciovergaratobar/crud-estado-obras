@@ -48,14 +48,14 @@ mat-card.mat-card {
 }
 
 button#retrocederBt {
-    position: absolute;
+    position: fixed;
     right: 10px;
     bottom: 10px;
 }
 
 button#closeModalBt {
 
-    position: absolute;
+    position: fixed;
     right: 10px;
     bottom: 10px;
     z-index: 100;
