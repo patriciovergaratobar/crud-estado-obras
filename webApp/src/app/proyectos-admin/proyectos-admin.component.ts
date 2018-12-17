@@ -94,11 +94,24 @@ export class ProyectosAdminComponent implements OnInit {
       if (result.value) {
 
         this.proyectoService.delete(proyecto.proyectosId).subscribe(res => { 
-          swal(
-          'Eliminado!',
-          'El dato fue eliminado.',
-          'success');
-          window.location.href = "proyectosadmin";
+
+          if (res['status'] == false) {
+
+            swal(
+              'Cancelado',
+              'El dato no fue eliminado, por que tiene obras asociadas.',
+              'error'
+            )
+
+          } else {
+
+            swal(
+              'Eliminado!',
+              'El dato fue eliminado.',
+              'success').then((result) => {
+                window.location.href = "proyectosadmin";
+              }); 
+          }
 
       });
 
