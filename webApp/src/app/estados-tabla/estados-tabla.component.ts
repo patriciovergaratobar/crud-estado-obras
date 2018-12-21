@@ -19,8 +19,7 @@ export class EstadosTablaComponent implements OnInit {
   dataSource: EstadosTablaDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['estadosObrasId','titulo','nombreObra','fecha','comentario','opciones'];
-
+  displayedColumns = ['estadosObrasId','titulo','nombreObra','fecha','comentario','nombreProyecto', 'nombreEmpresa','opciones'];
 
   ngOnInit() {
     this.dataSource = new EstadosTablaDataSource(this.paginator, this.sort, []);

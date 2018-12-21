@@ -10,7 +10,7 @@
       <td mat-cell *matCellDef="let row">{{row.titulo}}</td>
     </ng-container>
     <ng-container matColumnDef="nombreObra">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre Obra</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Obra</th>
       <td mat-cell *matCellDef="let row">{{row.nombreObra}}</td>
     </ng-container>
     <ng-container matColumnDef="fecha">
@@ -20,6 +20,14 @@
     <ng-container matColumnDef="comentario">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Comentario</th>
       <td mat-cell *matCellDef="let row">{{row.comentario}}</td>
+    </ng-container>
+    <ng-container matColumnDef="nombreProyecto">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Proyecto</th>
+      <td mat-cell *matCellDef="let row">{{row.nombreProyecto}}</td>
+    </ng-container>
+    <ng-container matColumnDef="nombreEmpresa">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Empresa</th>
+      <td mat-cell *matCellDef="let row">{{row.nombreEmpresa}}</td>
     </ng-container>
 
     <ng-container matColumnDef="opciones">

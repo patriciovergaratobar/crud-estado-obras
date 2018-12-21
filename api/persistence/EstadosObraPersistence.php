@@ -16,7 +16,7 @@ class EstadosObraPersistence{
     function getComentariosById($id) {
 
         $link = getConnect();
-        $query = "SELECT c.comentariosEstadosId, c.comentario, c.estadoId, c.rutUser, u.nombre, u.apellido  FROM comentariosEstados as c inner join user as u on u.rut = c.rutUser WHERE c.estadoId =  '". $id ."'";
+        $query = "SELECT c.comentariosEstadosId, c.fecha, c.visto, c.comentario, c.estadoId, c.rutUser, u.nombre, u.apellido  FROM comentariosEstados as c inner join user as u on u.rut = c.rutUser WHERE c.estadoId =  '". $id ."'";
         $result = $link->query($query);
         while($row = mysqli_fetch_assoc($result)){
 
@@ -30,11 +30,21 @@ class EstadosObraPersistence{
     function createComentario($data) {
 
         $link = getConnect();
-        $queryInsert = "INSERT INTO comentariosEstados ( comentario, estadoId, rutUser)  ".
-                    " VALUES ('".$data['comentario']."', '".$data['estadoId']."', '".$data['rutUser']."') ";
+        $queryInsert = "INSERT INTO comentariosEstados ( comentario, estadoId, rutUser, fecha, visto )  ".
+                    " VALUES ('".$data['comentario']."', '".$data['estadoId']."', '".$data['rutUser']."', '".$data['fecha']."', '".$data['visto']."') ";
         $result = $link->query($queryInsert);
         $link->close();
         return $result ;
+    }
+
+    function updateComentario($data) {
+
+        $link = getConnect();
+        $queryUpdate = "UPDATE comentariosEstados SET ".
+        "visto= '".$data['visto']."' ";
+        $result = $link->query($queryUpdate);
+        $link->close();
+        return $result;
     }
 
     function getAllByObraId($id) {
@@ -54,7 +64,7 @@ class EstadosObraPersistence{
     function getAll() {
 
         $link = getConnect();
-        $query = "SELECT * FROM estadosObras as e inner join obras as o on e.obraId = o.obraId";
+        $query = "SELECT * FROM estadosObras as estado inner join obras as o on o.obraId = estado.obraId inner join proyectos as pro on pro.proyectosId = o.proyectosId inner join empresas as empresa on empresa.empresaId = pro.empresaId";
         $result = $link->query($query);
         while($row = mysqli_fetch_assoc($result)){
 

@@ -10,6 +10,9 @@ export interface Estado {
     obraId: number;
     nombreObra: string;
 
+    nombreProyecto: string;
+    nombreEmpresa: string;
+
     fotos: Array<Archivo>;
 
     comentariosEstado: Array<Comentario>;
