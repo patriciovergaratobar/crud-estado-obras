@@ -53,6 +53,8 @@ export class EstadosObrasAdminComponent implements OnInit {
         || d.comentario.toString().toUpperCase().includes(this.filterText.toUpperCase())
         || d.titulo.toString().toUpperCase().includes(this.filterText.toUpperCase())
         || d.estadosObrasId.toString().includes(this.filterText.toString())
+        || d.nombreEmpresa.toString().toUpperCase().includes(this.filterText.toString().toUpperCase())
+        || d.nombreProyecto.toString().toUpperCase().includes(this.filterText.toString().toUpperCase())
       );
 
       this.tabla.addData(datos);
