@@ -70,6 +70,7 @@ export class ObrasTablaDataSource extends DataSource<Obra> {
         case 'codObra': return compare(+a.codObra, +b.codObra, isAsc);
         case 'proyectosId': return compare(+a.proyectosId, +b.proyectosId, isAsc);
         case 'nombreProyecto': return compare(+a.nombreProyecto, +b.nombreProyecto, isAsc);
+        case 'nombreEmpresa': return compare(+a.nombreEmpresa, +b.nombreEmpresa, isAsc);
         default: return 0;
       }
     });
