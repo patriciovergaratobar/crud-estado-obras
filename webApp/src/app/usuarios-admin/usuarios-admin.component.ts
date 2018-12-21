@@ -50,7 +50,7 @@ export class UsuariosAdminComponent implements OnInit {
         || d.email.toString().includes(this.filterText.toUpperCase())
         || d.activo.toString().includes(this.filterText.toUpperCase())
         || d.tipoPerfil.toString().includes(this.filterText.toUpperCase())
-
+        || d.nombreEmpresa.toString().includes(this.filterText.toUpperCase())
       );
 
       this.tabla.addData(datos);
