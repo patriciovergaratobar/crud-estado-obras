@@ -67,6 +67,8 @@ export class EstadosTablaDataSource extends DataSource<Estado> {
         case 'nombreObra': return compare(+a.nombreObra, +b.nombreObra, isAsc);
         case 'fecha': return compare(+a.fecha, +b.fecha, isAsc);
         case 'comentario': return compare(+a.comentario, +b.comentario, isAsc);
+        case 'nombreProyecto': return compare(+a.nombreProyecto, +b.nombreProyecto, isAsc);
+        case 'nombreEmpresa': return compare(+a.nombreEmpresa, +b.nombreEmpresa, isAsc);
         default: return 0;
       }
     });
