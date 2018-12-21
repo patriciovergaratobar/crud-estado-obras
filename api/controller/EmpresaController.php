@@ -7,6 +7,11 @@ class EmpresaController {
         return EmpresaPersistence::getById($id);
     }
 
+    function getByRut($rut) {
+
+        return EmpresaPersistence::getByRut($rut);
+    }
+
     function getAll() {
 
         return EmpresaPersistence::getAll();

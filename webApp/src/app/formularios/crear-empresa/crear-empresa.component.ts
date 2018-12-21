@@ -53,27 +53,44 @@ export class CrearEmpresaComponent implements OnInit {
       logo : this.logo
     };
 
-    this.empresaService.create(empresa as Empresa).subscribe((resp) => {
+    this.empresaService.getByRut(empresa.rutEmpresa).subscribe(r => {
 
-      if (resp['status'] == true) {
+      if (r == undefined || r == null || r['rutEmpresa'] != empresa.rutEmpresa) {
 
-        let dialogOk = this.dialog.open(DialogoSimpleComponent,{
-          data: {
-            titulo: "Dato Guardado",
-            contenido: "La empresa fue guardada exitosamente.",
-            salirText : "De acuerdo"
+        this.empresaService.create(empresa as Empresa).subscribe((resp) => {
+
+          if (resp['status'] == true) {
+    
+            let dialogOk = this.dialog.open(DialogoSimpleComponent,{
+              data: {
+                titulo: "Dato Guardado",
+                contenido: "La empresa fue guardada exitosamente.",
+                salirText : "De acuerdo"
+              }
+            });
+            
+            dialogOk.afterClosed().subscribe(result => {
+              window.location.href = "empresasadmin";
+            });
+          } else {
+    
+            let dialogErr = this.dialog.open(DialogoSimpleComponent,{
+              data: {
+                titulo: "Dato No Guardado",
+                contenido: "Hubo un error al guardar los datos. Intenta nuevamente.",
+                salirText : "De acuerdo"
+              }
+            });
+            
+            dialogErr.afterClosed().subscribe(result => {  });
           }
-        });
-        
-        dialogOk.afterClosed().subscribe(result => {
-          window.location.href = "empresasadmin";
         });
       } else {
 
         let dialogErr = this.dialog.open(DialogoSimpleComponent,{
           data: {
             titulo: "Dato No Guardado",
-            contenido: "Hubo un error al guardar los datos. Intenta nuevamente.",
+            contenido: "Ya existe una empresa con el rut ingresado.",
             salirText : "De acuerdo"
           }
         });
@@ -81,6 +98,7 @@ export class CrearEmpresaComponent implements OnInit {
         dialogErr.afterClosed().subscribe(result => {  });
       }
     });
+
   }
 
   openDialogoError(nombreCampo) {

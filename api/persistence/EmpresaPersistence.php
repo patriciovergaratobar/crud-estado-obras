@@ -13,6 +13,17 @@ class EmpresaPersistence {
         return $response;
     }
 
+    function getByRut($rut) {
+
+        $link = getConnect();
+        $query = "SELECT * FROM empresas where rutEmpresa = '". $rut ."' limit 1";
+        $result = $link->query($query);
+        while ($row = mysqli_fetch_assoc($result)) { $response = $row; }
+        $result->close();
+        $link->close();
+        return $response;
+    }
+
     function getAll() {
 
         $link = getConnect();

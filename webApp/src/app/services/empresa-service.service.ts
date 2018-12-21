@@ -42,6 +42,11 @@ export class EmpresaServiceService {
     return this.http.get(this.BASE_URL.toString().concat("/id/").concat(id.toString()), this.httpOptions );
   }
 
+  getByRut(rut) {
+
+    return this.http.get(this.BASE_URL.toString().concat("/rut/").concat(rut.toString()), this.httpOptions );
+  }
+
   create(empresa: Empresa) {
 
     return this.http.post(this.BASE_URL.toString().concat("/create"),JSON.stringify(empresa), this.httpOptions);
