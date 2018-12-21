@@ -19,7 +19,7 @@ export class ObrasTablaComponent implements OnInit {
   dataSource: ObrasTablaDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['obraId','nombreObra','fechaInicio','direccion','nombreProyecto','opciones'];
+  displayedColumns = ['obraId','nombreObra','fechaInicio','direccion','nombreProyecto','nombreEmpresa','opciones'];
 
 
   ngOnInit() {

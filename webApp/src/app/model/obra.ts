@@ -7,4 +7,5 @@ export interface Obra {
     fechaInicio: Date;
     proyectosId: number;
     nombreProyecto: string;
+    nombreEmpresa: string;
 }

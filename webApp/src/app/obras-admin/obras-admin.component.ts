@@ -50,6 +50,7 @@ export class ObrasAdminComponent implements OnInit {
         || d.fechaInicio.toString().includes(this.filterText.toUpperCase())
         || d.direccion.toString().includes(this.filterText.toUpperCase())
         || d.nombreProyecto.toString().includes(this.filterText.toUpperCase())
+        || d.nombreEmpresa.toString().includes(this.filterText.toUpperCase())
 
       );
 
