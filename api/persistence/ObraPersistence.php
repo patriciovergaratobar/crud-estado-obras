@@ -30,7 +30,7 @@ class ObraPersistence {
     function getAll() {
 
         $link = getConnect();
-        $query = "SELECT * FROM obras as o inner join proyectos as pro on pro.proyectosId = o.proyectosId";
+        $query = "SELECT * FROM obras as o inner join proyectos as pro on pro.proyectosId = o.proyectosId inner join empresas as e on e.empresaId = pro.empresaId";
         $result = $link->query($query);
         while($row = mysqli_fetch_assoc($result)){
 

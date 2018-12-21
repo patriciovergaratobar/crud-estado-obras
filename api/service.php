@@ -154,6 +154,13 @@ $app->get('/empresa/id/{id}', function (Request $request, Response $response, ar
     return $response;
 });
 
+$app->get('/empresa/rut/{rut}', function (Request $request, Response $response, array $args) {
+
+    $rut = $args['rut'];
+    $response = $response->withJson(EmpresaController::getByRut($rut));
+    return $response;
+});
+
 $app->post('/empresa/create', 
 function (Request $request, Response $response) {
 
