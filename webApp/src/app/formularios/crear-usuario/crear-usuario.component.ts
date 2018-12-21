@@ -92,34 +92,53 @@ export class CrearUsuarioComponent implements OnInit {
       activo: 1
     };
 
-    this.usuarioService.create(newUser as Usuario).subscribe((resp) => {
+    this.usuarioService.getById(newUser.rut).subscribe((r) => {
 
-      if (resp['status'] == true) {
+      if(r == undefined || r == null || r['rut'] != newUser.rut) {
 
-        let dialogOk = this.dialog.open(DialogoSimpleComponent,{
-          data: {
-            titulo: "Dato Guardado",
-            contenido: "El usuario fue guardada exitosamente.",
-            salirText : "De acuerdo"
+        this.usuarioService.create(newUser as Usuario).subscribe((resp) => {
+
+          if (resp['status'] == true) {
+    
+            let dialogOk = this.dialog.open(DialogoSimpleComponent,{
+              data: {
+                titulo: "Dato Guardado",
+                contenido: "El usuario fue guardada exitosamente.",
+                salirText : "De acuerdo"
+              }
+            });
+            
+            dialogOk.afterClosed().subscribe(result => {
+              window.location.href = "usuariosadmin";
+            });
+          } else {
+    
+            let dialogErr = this.dialog.open(DialogoSimpleComponent,{
+              data: {
+                titulo: "Dato No Guardado",
+                contenido: "Hubo un error al guardar los datos. Intenta nuevamente.",
+                salirText : "De acuerdo"
+              }
+            });
+            
+            dialogErr.afterClosed().subscribe(result => {  });
           }
-        });
-        
-        dialogOk.afterClosed().subscribe(result => {
-          window.location.href = "usuariosadmin";
         });
       } else {
 
         let dialogErr = this.dialog.open(DialogoSimpleComponent,{
           data: {
             titulo: "Dato No Guardado",
-            contenido: "Hubo un error al guardar los datos. Intenta nuevamente.",
+            contenido: "El rut ingresado ya existe.",
             salirText : "De acuerdo"
           }
         });
         
         dialogErr.afterClosed().subscribe(result => {  });
       }
+
     });
+
   }
 
   openDialogoError(nombreCampo) {
