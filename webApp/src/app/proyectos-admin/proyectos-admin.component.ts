@@ -45,6 +45,7 @@ export class ProyectosAdminComponent implements OnInit {
         d.proyectosId.toString().includes(this.filterText.toUpperCase())
         || d.nombreProyecto.toUpperCase().includes(this.filterText.toUpperCase())
         || d.descripcion.toUpperCase().includes(this.filterText.toUpperCase())
+        || d.nombreEmpresa.toString().includes(this.filterText.toUpperCase())
       
       );
 
