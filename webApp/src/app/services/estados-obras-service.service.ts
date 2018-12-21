@@ -68,6 +68,11 @@ export class EstadosObrasServiceService {
     return this.http.post(this.BASE_URL.toString().concat("/createComentario"),JSON.stringify(comentario), this.httpOptions);
   }
 
+  updateComentario(comentario: Comentario) {
+
+    return this.http.put(this.BASE_URL.toString().concat("/updateComentario"),JSON.stringify(comentario), this.httpOptions);
+  }
+
   getComentariosById(id) {
 
     return this.http.get(this.BASE_URL.toString().concat("/comentario/id/").concat(id.toString()), this.httpOptions );

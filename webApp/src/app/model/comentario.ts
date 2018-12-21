@@ -4,6 +4,9 @@ export interface Comentario {
     comentario: string;
     estadoId: number;
     rutUser: string;
+    fecha: Date;
+    visto: number;
+    vistoCheck: boolean;
 
     nombre: string;
     apellido: string;

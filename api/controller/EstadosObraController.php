@@ -33,6 +33,12 @@ class EstadosObraController {
         return array('status' => $isOk, 'action' => 'create', 'message' => 'created');
     }
 
+    function updateVistoComentario($data) {
+
+        $isOk = EstadosObraPersistence::updateComentario($data);
+        return array('status' => $isOk, 'action' => 'update', 'message' => 'update');
+    }
+
     function create($data) {
 
         if ($data['titulo'] == null || $data['fecha'] == null || $data['comentario'] == null || $data['obraId'] == null ) {

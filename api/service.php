@@ -488,6 +488,21 @@ function (Request $request, Response $response) {
     }
 });
 
+$app->put('/estados/updateComentario', 
+function (Request $request, Response $response) {
+
+    $token_header = $request->getHeaderLine('authorization-x');
+    if (UserController::validateToken($token_header)) {
+        $data = $request->getParsedBody();
+        $response = $response->withJson(EstadosObraController::updateVistoComentario($data));
+        return $response;
+    } else {
+        return $response->withStatus(203)
+                        ->withHeader('Content-Type', 'text/html')
+                        ->write('203 Non-Authoritative Information. (authorization-x)');
+    }
+});
+
 $app->get('/estados/comentario/id/{id}', function (Request $request, Response $response, array $args) {
 
     $token_header = $request->getHeaderLine('authorization-x');

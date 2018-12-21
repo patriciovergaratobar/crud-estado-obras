@@ -47,7 +47,12 @@
             </mat-list-item>
             
             <mat-list-item *ngFor="let c of e.comentariosEstado">
-                <p style=" font-size: 11px; background-color: #f3f3f3;"><b>{{ c.nombre }} {{ c.apellido }}</b> - {{ c.comentario }}</p> 
+                
+                <p style=" font-size: 11px; background-color: #f3f3f3;">
+                    
+                    <b>{{ c.nombre }} {{ c.apellido }}</b> - <span> {{ c.fecha }}</span> <br> {{ c.comentario }}
+                </p> 
+                <p>&nbsp;<mat-checkbox class="example-margin" [disabled]="isNoAdmin" (change)="visto(c)" [(ngModel)]="c.vistoCheck "> Visto</mat-checkbox><br></p>    
                 <mat-divider></mat-divider>
             </mat-list-item>
 

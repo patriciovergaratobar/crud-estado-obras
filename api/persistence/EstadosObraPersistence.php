@@ -31,7 +31,7 @@ class EstadosObraPersistence{
 
         $link = getConnect();
         $queryInsert = "INSERT INTO comentariosEstados ( comentario, estadoId, rutUser, fecha, visto )  ".
-                    " VALUES ('".$data['comentario']."', '".$data['estadoId']."', '".$data['rutUser']."', '".$data['fecha']."', '".$data['visto']."') ";
+                    " VALUES ('".$data['comentario']."', '".$data['estadoId']."', '".$data['rutUser']."', now(), 0) ";
         $result = $link->query($queryInsert);
         $link->close();
         return $result ;
@@ -41,7 +41,8 @@ class EstadosObraPersistence{
 
         $link = getConnect();
         $queryUpdate = "UPDATE comentariosEstados SET ".
-        "visto= '".$data['visto']."' ";
+        "visto = '".$data['visto']."' ".
+        "where comentariosEstadosId = '".$data['comentariosEstadosId']."' ";
         $result = $link->query($queryUpdate);
         $link->close();
         return $result;

@@ -25,6 +25,7 @@ export class HomeEstadosComponent implements OnInit {
   public obra: Obra;
   public estadosObra: Array<Estado>;
   public proyecto: Proyecto;
+  public isNoAdmin: boolean;
 
   constructor(private route: ActivatedRoute, 
   private obrasService: ObraServiceService,
@@ -45,6 +46,15 @@ export class HomeEstadosComponent implements OnInit {
     this.obra.obraId = Number.parseInt(this.route.snapshot.paramMap.get('id').toString());
     //this.proyecto.proyectosId = Number.parseInt(this.route.snapshot.paramMap.get('id').toString());
     this.loadAll();
+
+    let admin = localStorage.getItem('isAdmin');
+    if (admin == 'ADMIN') {
+      
+      this.isNoAdmin = false;
+    } else {
+
+      this.isNoAdmin = true;
+    }
   }
 
   loadAll() {
@@ -63,7 +73,16 @@ export class HomeEstadosComponent implements OnInit {
       this.estadosObra.forEach(
         estado => this.estadosService.getComentariosById(estado.estadosObrasId)
         .subscribe(
-          com => estado.comentariosEstado = com as Array<Comentario>
+          com => { 
+            estado.comentariosEstado = com as Array<Comentario>;
+
+            if (estado.comentariosEstado != undefined && estado.comentariosEstado != null) {
+
+              estado.comentariosEstado.forEach(c => c.vistoCheck = (c.visto != undefined && c.visto != null && c.visto==1));
+          
+            }
+            
+          }
         )
       );
     });
@@ -95,7 +114,14 @@ export class HomeEstadosComponent implements OnInit {
     this.estadosObra.forEach(
       estado => this.estadosService.getComentariosById(estado.estadosObrasId)
       .subscribe(
-        com => estado.comentariosEstado = com as Array<Comentario>
+        com => {
+          if (com == undefined || com == null) {
+
+            return false;
+          }
+          estado.comentariosEstado = com as Array<Comentario>;
+          estado.comentariosEstado.forEach(c => c.vistoCheck = (c.visto != undefined && c.visto != null && c.visto==1));
+        }
       )
     );
   }
@@ -122,5 +148,20 @@ export class HomeEstadosComponent implements OnInit {
       this.reLoadComentarios();
     });
 
+  }
+
+  visto(comentario: Comentario) {
+
+    console.log(comentario);
+    if (comentario.vistoCheck) {
+      comentario.visto = 1;
+    } else {
+      comentario.visto = 0;
+    }
+
+    this.estadosService.updateComentario(comentario).subscribe(resp => {
+      console.log(resp)
+      this.reLoadComentarios();  
+    });
   }
 }

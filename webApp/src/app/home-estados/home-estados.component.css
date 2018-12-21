@@ -145,3 +145,13 @@ mat-expansion-panel.mat-expansion-panel.ng-tns-c12-4.ng-star-inserted {
       width: 100%;
     }
   }
+
+  .mat-list-base .mat-list-item, .mat-list-base .mat-list-option {
+    /*display: block;*/
+    height: 90px;
+    -webkit-tap-highlight-color: transparent;
+    width: 100%;
+    padding: 0;
+    overflow-x: auto;
+    overflow-y: auto;
+}
