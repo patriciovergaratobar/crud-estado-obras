@@ -16,6 +16,7 @@ import { Obra } from 'src/app/model/obra';
 import { Empresa } from 'src/app/model/empresa';
 import { Proyecto } from 'src/app/model/proyecto';
 import { Estado } from 'src/app/model/estado';
+import { Usuario } from '../model/usuario';
 
 @Component({
   selector: 'app-menu-principal',
@@ -30,6 +31,8 @@ export class MenuPrincipalComponent implements OnInit  {
     );
 
   public isHome;
+
+  public nombreUsuario: String;
 
   public empresa: Empresa;
 
@@ -51,6 +54,7 @@ export class MenuPrincipalComponent implements OnInit  {
 
   ngOnInit() {
 
+    this.nombreUsuario = "";
     this.empresa = {} as Empresa;
      
     let token = localStorage.getItem('sess');
@@ -63,6 +67,10 @@ export class MenuPrincipalComponent implements OnInit  {
       if (admin == 'ADMIN') {
         this.isAdmin = true;
       }
+
+      
+      var usuario = JSON.parse(localStorage.getItem('user')) as Usuario;
+      this.nombreUsuario = usuario.nombre;// + ' ' + usuario.apellido;
 
       this.empresa = JSON.parse(localStorage.getItem('empresa')) as Empresa;
 
