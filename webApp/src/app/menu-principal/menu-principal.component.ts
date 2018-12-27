@@ -68,7 +68,6 @@ export class MenuPrincipalComponent implements OnInit  {
         this.isAdmin = true;
       }
 
-      
       var usuario = JSON.parse(localStorage.getItem('user')) as Usuario;
       this.nombreUsuario = usuario.nombre;// + ' ' + usuario.apellido;
 
