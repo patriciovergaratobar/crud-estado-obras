@@ -23,11 +23,13 @@ export class EditarObraComponent implements OnInit {
   public proyectos: Array<Proyecto>;
   public empresaSeleccionada: number;
   public fechaSeleccionada: Date;
+  public isLoading: Boolean;
   
   constructor(private route: ActivatedRoute, private empresaService: EmpresaServiceService, private obraService: ObraServiceService, private proyectoService: ProyectoServiceService, private dialog: MatDialog) { }
 
   ngOnInit() {
 
+    this.isLoading = true;
     this.obra = {} as Obra;
     //this.fechaSeleccionada = new Date();
     this.empresaSeleccionada = 0;
@@ -38,20 +40,26 @@ export class EditarObraComponent implements OnInit {
 
   loadAll() {
 
-    this.empresaService.getAll().subscribe(resp => this.empresas = resp as Array<Empresa>);
-    this.proyectoService.getAll().subscribe(resp => { 
-      this.proyectos = resp as Array<Proyecto>;
-      
-    });
-    this.obraService.getById(this.obra.obraId).subscribe(res => {
+    this.empresaService.getAll().subscribe(resp => { 
+      this.empresas = resp as Array<Empresa>;
+    
+      this.proyectoService.getAll().subscribe(resp => { 
+        this.proyectos = resp as Array<Proyecto>;
+        
+        this.obraService.getById(this.obra.obraId).subscribe(res => {
 
-      this.obra = res as Obra;
-      this.fechaSeleccionada = new Date(this.obra.fechaInicio);
-      this.proyectoService.getById(this.obra.proyectosId).subscribe(resp => { 
-        let proyect = resp as Proyecto;
-        this.empresaSeleccionada = proyect.proyectosId;
-        this.loadProyectosByEmpresa(this.empresaSeleccionada);
+          this.obra = res as Obra;
+          this.fechaSeleccionada = new Date(this.obra.fechaInicio);
+          this.proyectoService.getById(this.obra.proyectosId).subscribe(resp => { 
+
+            let proyect = resp as Proyecto;
+            this.empresaSeleccionada = proyect.empresaId;
+            this.loadProyectosByEmpresa(this.empresaSeleccionada);
+            this.isLoading = false;
+          });
+        });
       });
+
     });
   }
 
