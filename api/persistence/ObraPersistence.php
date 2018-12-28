@@ -5,7 +5,7 @@ class ObraPersistence {
     function getById($id) {
 
         $link = getConnect();
-        $query = "SELECT * FROM obras  as o inner join proyectos as pro on pro.proyectosId = o.proyectosId inner join empresas as e on e.empresaId = pro.empresaId WHERE o.obraId =  '". $id ."' limit 1";
+        $query = "SELECT o.obraId, o.nombreObra, o.codObra, o.direccion, o.fechaInicio, o.proyectosId, pro.nombreProyecto, e.nombreEmpresa, e.empresaId  FROM obras  as o inner join proyectos as pro on pro.proyectosId = o.proyectosId inner join empresas as e on e.empresaId = pro.empresaId WHERE o.obraId =  '". $id ."' limit 1";
         $result = $link->query($query);
         while ($row = mysqli_fetch_assoc($result)) { $response = $row; }
         $result->close();
