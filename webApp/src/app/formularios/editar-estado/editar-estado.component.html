@@ -7,6 +7,7 @@
         Editar Estados de Obras
   </mat-card-title>  
    
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
     <mat-card-content>
         <mat-form-field class="mat-form-field-login">
             <input matInput placeholder="Titulo" [(ngModel)]="estado.titulo" required>

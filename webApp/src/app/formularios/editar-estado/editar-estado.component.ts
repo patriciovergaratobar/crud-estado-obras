@@ -35,7 +35,9 @@ export class EditarEstadoComponent implements OnInit {
   public fileSeleccionado: String;
   public fileBase64: String;
   public descripcionFile: String;
-  
+
+  public isLoading: Boolean;
+
   constructor(private route: ActivatedRoute, 
     private empresaService: EmpresaServiceService, 
     private obraService: ObraServiceService, 
@@ -46,6 +48,7 @@ export class EditarEstadoComponent implements OnInit {
 
   ngOnInit() {
 
+    this.isLoading = true;
     this.fileBase64 = "";
     this.descripcionFile = "";
     this.fileSeleccionado = "";
@@ -96,9 +99,14 @@ export class EditarEstadoComponent implements OnInit {
 
   loadFotosByEstado() {
 
+    this.isLoading = true;
     this.fotos = [];
     this.fotoService.getByEstadoId(this.estado.estadosObrasId).subscribe(
-      (resp) => this.fotos = resp as Array<Archivo>
+      
+      (resp) => {
+        this.isLoading = false;
+        this.fotos = resp as Array<Archivo>;
+      }
     );
   }
 
@@ -191,6 +199,7 @@ export class EditarEstadoComponent implements OnInit {
 
   uploadFoto() {
 
+    this.isLoading = true;
     this.fileBase64 = localStorage.getItem("imgSave").toString();
     console.log(this.fileBase64);
 
@@ -198,12 +207,14 @@ export class EditarEstadoComponent implements OnInit {
     if (this.fileBase64 == undefined || this.fileBase64 == null || this.fileBase64 == "" || this.fileBase64.length == 0) {
 
       this.openDialogoError("Imagen");
+      this.isLoading = false;
       return false;
     }
 
     if (this.descripcionFile == undefined || this.descripcionFile == null || this.descripcionFile == "" || this.descripcionFile.length == 0) {
 
       this.openDialogoError("Descripción");
+      this.isLoading = false;
       return false;
     }
 
@@ -229,6 +240,7 @@ export class EditarEstadoComponent implements OnInit {
         this.fileBase64 = "";
         this.descripcionFile = "";
         this.fileSeleccionado = "";
+        this.isLoading = false;
         this.loadFotosByEstado();
         
       } else {
@@ -242,6 +254,7 @@ export class EditarEstadoComponent implements OnInit {
         });
         
         dialogErr.afterClosed().subscribe(result => {  });
+        this.isLoading = false;
       }
     });
     
