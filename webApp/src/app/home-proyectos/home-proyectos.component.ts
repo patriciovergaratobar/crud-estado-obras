@@ -22,6 +22,7 @@ export class HomeProyectosComponent implements OnInit {
 
   public obras: Array<Obra>;
   public proyecto: Proyecto;
+  public isLoading: Boolean;
 
   constructor(private route: ActivatedRoute, 
     private obrasService: ObraServiceService,
@@ -29,6 +30,7 @@ export class HomeProyectosComponent implements OnInit {
 
   ngOnInit() {
 
+    this.isLoading = true;
     this.proyecto = {} as Proyecto;
     this.obras = [] as Array<Obra>;
 
@@ -40,10 +42,15 @@ export class HomeProyectosComponent implements OnInit {
 
     this.proyectoService.getById(this.proyecto.proyectosId).subscribe(res => {
 
-      this.proyecto = res as Proyecto;      
+      this.proyecto = res as Proyecto;
+      this.isLoading = false;  
     });
 
-    this.obrasService.getByProyectoId(this.proyecto.proyectosId).subscribe(resp => this.obras = resp as Array<Obra>);
+    this.obrasService.getByProyectoId(this.proyecto.proyectosId).subscribe(resp =>{
+       this.obras = resp as Array<Obra>;
+       this.isLoading = false;
+      
+    });
   }
 
 }

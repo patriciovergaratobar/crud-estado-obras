@@ -1,6 +1,9 @@
 <mat-toolbar color="primary">Obras del Proyecto {{proyecto.nombreProyecto}}</mat-toolbar>
 
 <div class="container-home">
+<mat-card class="card" *ngIf="isLoading">
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+</mat-card>
 
 <mat-card class="card" *ngFor="let o of obras" >
     <mat-card-header>
