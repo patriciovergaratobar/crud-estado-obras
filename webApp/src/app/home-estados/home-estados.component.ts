@@ -27,6 +27,8 @@ export class HomeEstadosComponent implements OnInit {
   public proyecto: Proyecto;
   public isNoAdmin: boolean;
 
+  public isLoading: Boolean;
+
   constructor(private route: ActivatedRoute, 
   private obrasService: ObraServiceService,
   private proyectoService: ProyectoServiceService,
@@ -39,6 +41,7 @@ export class HomeEstadosComponent implements OnInit {
 
   ngOnInit() {
 
+    this.isLoading = true;
     this.proyecto = {} as Proyecto;
     this.obra = {} as Obra;
     this.estadosObra = [] as Array<Estado>;
@@ -64,10 +67,16 @@ export class HomeEstadosComponent implements OnInit {
       this.estadosObra = resp as Array<Estado>;
 
       this.estadosObra.forEach(
-        estado => this.fotoService.getByEstadoId(estado.estadosObrasId)
+        estado =>{
+          this.isLoading = true;
+        this.fotoService.getByEstadoId(estado.estadosObrasId)
         .subscribe(
-          files => estado.fotos = files as Array<Archivo>
-        )
+          files =>{
+             estado.fotos = files as Array<Archivo>;
+             this.isLoading = false;
+          }
+        );
+        }
       );
 
       this.estadosObra.forEach(
@@ -85,6 +94,7 @@ export class HomeEstadosComponent implements OnInit {
           }
         )
       );
+      this.isLoading = false;
     });
 
     this.obrasService.getById(this.obra.obraId).subscribe(res => {
@@ -94,6 +104,7 @@ export class HomeEstadosComponent implements OnInit {
       this.proyectoService.getById(this.obra.proyectosId).subscribe(res => {
 
         this.proyecto = res as Proyecto;
+        this.isLoading = false;
       });
     });
   }
@@ -111,6 +122,7 @@ export class HomeEstadosComponent implements OnInit {
 
   reLoadComentarios() {
 
+    this.isLoading = true;
     this.estadosObra.forEach(
       estado => this.estadosService.getComentariosById(estado.estadosObrasId)
       .subscribe(
@@ -121,6 +133,7 @@ export class HomeEstadosComponent implements OnInit {
           }
           estado.comentariosEstado = com as Array<Comentario>;
           estado.comentariosEstado.forEach(c => c.vistoCheck = (c.visto != undefined && c.visto != null && c.visto==1));
+          this.isLoading = false;
         }
       )
     );

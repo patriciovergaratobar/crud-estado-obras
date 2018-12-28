@@ -1,6 +1,9 @@
 <mat-toolbar color="primary">Estados de Obra - {{obra.nombreEmpresa}} / {{obra.nombreProyecto}} / {{obra.nombreObra}}</mat-toolbar>
 <div class="container-home">
-   <mat-card class="card" *ngIf="estadosObra == null || estadosObra.length == 0" >
+   <mat-card class="card" *ngIf="isLoading">
+                <mat-spinner *ngIf="isLoading"></mat-spinner>
+   </mat-card>
+   <mat-card class="card" *ngIf="estadosObra == null || estadosObra.length == 0 && isLoading == false" >
       <mat-card-header>
          <mat-card-title>No hay estados registrados en el sistema.</mat-card-title>
       </mat-card-header>
@@ -26,6 +29,9 @@
             </mat-panel-description>
          </mat-expansion-panel-header>
          <mat-list>
+            <mat-list-item *ngIf="e.fotos == null">
+                Cargando...
+            </mat-list-item>
             <mat-list-item *ngFor="let foto of e.fotos">
                <img (click)="clickOpenModalImg('data:image/jpeg;base64,'+foto.archivos)" style="width:50px; margin-right: 1em;" src='data:image/jpeg;base64,{{ foto.archivos }}' /> 
                <a (click)="clickOpenModalImg('data:image/jpeg;base64,'+foto.archivos)">{{ foto.comentario }}</a> 
