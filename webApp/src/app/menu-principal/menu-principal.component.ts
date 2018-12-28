@@ -107,9 +107,11 @@ export class MenuPrincipalComponent implements OnInit  {
     this.router.events.subscribe((call:any) => {
           
       var token = localStorage.getItem('sess');
-    
-      if(call.url == '/login') {
 
+      if(call.url == '/login' || call.url == '/' ) {
+
+        //indica que no esta login y quita el menu.
+        this.isloging = false; 
         return false;
       }
 
