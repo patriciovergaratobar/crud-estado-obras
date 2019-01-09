@@ -20,6 +20,7 @@ export class EditarUsuarioComponent implements OnInit {
   public empresas: Array<Empresa>;
 
   public tiposUsuario = [
+    {value: 'SADMIN', viewValue: 'Super Administrador'},
     {value: 'ADMIN', viewValue: 'Administrador'},
     {value: 'BASIC', viewValue: 'Normal'}
   ];
