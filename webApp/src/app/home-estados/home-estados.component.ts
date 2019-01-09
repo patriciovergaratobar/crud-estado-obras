@@ -51,7 +51,7 @@ export class HomeEstadosComponent implements OnInit {
     this.loadAll();
 
     let admin = localStorage.getItem('isAdmin');
-    if (admin == 'ADMIN') {
+    if (admin == 'SADMIN' || admin == 'ADMIN' ) {
       
       this.isNoAdmin = false;
     } else {

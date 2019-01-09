@@ -64,7 +64,7 @@ export class MenuPrincipalComponent implements OnInit  {
       this.validarPath();
       this.isloging = true;
       let admin = localStorage.getItem('isAdmin');
-      if (admin == 'ADMIN') {
+      if (admin == 'SADMIN') {
         this.isAdmin = true;
       }
 
